@@ -1,0 +1,122 @@
+﻿@page
+@using HelpingHands.Areas.Identity.Pages.Account;
+@model RegisterModel
+
+
+<body>
+   <div class="container">
+        <section>
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 style="color:#16697a" class="card-title">Create New User</h3>
+
+                        <!-- Vertical Form -->
+                        <form class="row g-3">
+                            <div class="col-10">
+                                <label for="inputNanme4" class="form-label">Username</label>
+                                <input asp-for="Input.Username" type="text" class="form-control">
+                            </div>
+                            <div class="col-10">
+                                <label for="inputEmail4" class="form-label">Email</label>
+                                <input asp-for="Input.Email" type="email" class="form-control">
+                            </div>
+                            <div class="col-10">
+                                <label for="inputPassword4" class="form-label">Phone Number</label>
+                                <input asp-for="Input.PhoneNumber" type="number" class="form-control">
+                            </div>
+                            <div class="col-10">
+                                <label for="inputAddress" class="form-label">Password</label>
+                                <input asp-for="Input.Password" type="text" class="form-control">
+                            </div>
+                            <div class="col-10">
+                                <label for="inputAddress" class="form-label">Confirm Password</label>
+                                <input asp-for="Input.ConfirmPassword" type="text" class="form-control">
+                            </div>
+                            <div class="col-10">
+                                <label for="inputAddress" class="form-label">User Type</label>
+                                <div>
+                                    <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select" aria-label="Default select example">
+                                        <option disabled selected>Select User Type</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button id="registerSubmit" type="submit" class="btn btn-primary" style="color:#fff; background-color:#16697a;">Create User</button>
+                                <button id="registerSubmit" type="reset" class="btn btn-secondary" style="color:#fff; background-color:#d81159;">Cancel</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section>
+            <div class="col-lg-16">
+                <div class="card">
+                        <h3 style="color:#16697a" class="card-title">List of Office Manager and Nurses</h3>
+
+                        <!-- Vertical Form -->
+                        <div class="card">
+                            
+                            <div class="table-responsive text-nowrap">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Email</th>
+                                            <th>Contact Details</th>
+                                            <th>User Type</th>
+                                            <th>User Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0" style="color:#16697a">
+                                        <tr>
+                                            <td>
+                                                
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                               
+                                            </td>
+                                            <td><span class="badge bg-label-primary me-1">Active</span></td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+   </div>
+
+   
+</body>
+<style>
+   
+    .row button {
+
+        padding:10px 10px;
+        margin-right: 40px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items:inherit; /* Center vertically */
+         /* Adjust the height as needed */
+    }
+</style>

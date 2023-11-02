@@ -1,0 +1,22 @@
+﻿@using HelpingHands.Models
+@model City
+@{
+    ViewData["Title"] = "CreateCity";
+}
+
+<h3>Update City</h3>
+<br />
+<form method="post" action="/YourController/YourAction">
+    <div id="textboxContainer" class="custom-textbox-container">
+        <div class="col-lg-4">
+            <label>Name</label>
+            <input asp-for="Name" type="text" id="txtName" class="form-control" />
+        </div>
+        <div class="col-lg-4">
+            <label>Abbreviation</label>
+            <input asp-for="Abbreviation" type="text" class="form-control" id="txtAbbr" />
+        </div>
+    </div>
+    <button class="btn btn-primary" id="addTextboxes" type="button">Add Textboxes</button>
+    <button asp-action="UpdateCity" asp-controller="Admin" class="btn btn-primary" type="submit">Submit</button>
+</form>

@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HelpingHands</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+   
+    <link rel="stylesheet" href="~/HelpingHands.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="~/font-6/css/all.css" rel="stylesheet" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link href="~/landing/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/landing/css/flaticon.css" rel="stylesheet" />
+    <link href="~/landing/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/landing/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/landing/css/magnific-popup.css" rel="stylesheet" />
+    <link href="~/landing/css/nice-select.css" rel="stylesheet" />
+    <link href="~/landing/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/landing/css/slicknav.min.css" rel="stylesheet" />
+    <a href="~/landing/css/style.css.map"></a>
+    <link href="~/landing/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <ul class="header__top__left">
+                            <li><i class="fa fa-phone"></i> +27-67-747-0492</li>
+                            <li><i class="fa fa-map-marker"></i> University Way, Summerstrand, Gqeberha, 6019</li>
+                            <li><i class="fa fa-clock-o"></i> Mon to Fri 9:00am to 16:30pm</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="header__top__right">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="top: 0; width: 100%;left: 0;background-color: var(--white-color);display: flex;align-items: center;justify-content: space-between;padding: 15px 30px; z-index: 1000;box-shadow: 0 0 2px var(--blue-color);">
+            <div class="container">
+                <div class="logo_item " style=" display: flex;align-items: center;column-gap: 10px;font-size: 22px;font-weight: 500;border-radius: 50%;">
+                    <i class="bx bx-menu" id="sidebarOpen"></i>
+                    <img  src="~/image/charity (4).png" alt="">
+                   
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <a class="navbar-brand" style="font-family:Poppins,sans-serif;font-size:22px;font-weight: 500;font-style: italic;color: #16697a;" asp-area="" asp-controller="Home" asp-action="Index">Thusanang</a>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="font-family:Poppins,sans-serif;font-size:18px;" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="font-family:Poppins,sans-serif;font-size:18px;"asp-area=" " asp-controller="Home" asp-action="AboutUs">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="font-family:Poppins,sans-serif;font-size:18px;" asp-area=" " asp-controller="Home" asp-action="Services">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="font-family:Poppins,sans-serif;font-size:18px;" asp-area=" " asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" style="font-family:Poppins,sans-serif;font-size:18px;">
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - HelpingHands - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/landing/js/bootstrap.min.js"></script>
+   
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+

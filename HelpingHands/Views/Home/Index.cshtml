@@ -1,0 +1,200 @@
+﻿@{
+    Layout = "_DefaultLayout";
+}
+
+<body>
+    
+    <section class="hero spad set-bg" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="hero__text">
+                        <span>GET THE HELP YOU NEED </span>
+                        <h2>Get free, mobile, quality wound care servise from nurses</h2>
+                        <a asp-action="ContactUs" asp-controller="Home" class="primary-btn normal-btn">Contact us</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="consultation__video set-bg" style="background-repeat:no-repeat;background-size:cover">
+                        <img src="~/image/wound20carer.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Section Begin -->
+    <section class="consultation">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="consultation__form">
+                        <div class="section-title">
+                            
+                            <h3>Get In Touch with us</h3>
+                        </div>
+                        <form action="#">
+                            <input type="text" placeholder="Name">
+                            <input type="text" placeholder="Email">
+                         
+                            <button type="submit" class="site-btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="consultation__text">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="consultation__text__item">
+                                    <div class="section-title">
+                                        <span>Welcom to Thusanang</span>
+                                        <h2>Find reliable registerd <b>NURSES</b></h2>
+                                    </div>
+                                    <p>
+                                        Thusanang is a non-governmental organization (NGO) dedicated to providing essential medical
+                                        care and support to individuals affected by chronic and acute wounds.
+                                        Our mission is to improve the quality of life for those facing the challenges of wound-related conditions.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="consultation__video set-bg" style="background-repeat:no-repeat;background-size:cover">
+                                    <img src="~/Image/Video.jpg"  />
+                                    <a href="https://youtu.be/zTjkqV4hAeU?si=-7NcAqWw1gz62IMO" class="play-btn video-popup"><i class="fa fa-play" style="position: absolute;top: 10px;left: 10px; background-color:#13a2b7;border-radius:20%;font-size: 30px;  padding: 5px; "></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="chooseus spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <span>Why choose us?</span>
+                        <h2>Services for you</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="chooseus__item">
+                        <img src="~/landing/img/icons/bandage.png" />
+                        <h5>Advanced Dressings</h5>
+                        <p>Applying specialized dressings and treatment products that create a conducive environment for wound healing. These may include hydrocolloid dressings, hydrogel dressings, foam dressings, and negative pressure wound therapy.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="chooseus__item">
+                        <img src="~/landing/img/icons/infection.png" />
+                        <h5>Infection Control</h5>
+                        <p>
+                            Treating and preventing infections that can delay wound healing. This may include the use of antibiotics, antimicrobial dressings, and other therapies.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="chooseus__item">
+                        <img src="~/landing/img/icons/wounded (1).png" />
+                        <h5>Wound Cleaning and Debridement</h5>
+                        <p>Cleaning the wound to remove debris, dead tissue, and infection is a fundamental step in wound care. Debridement involves the removal of necrotic (dead) tissue to encourage wound healing.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="chooseus__item">
+                        <img src="~/landing/img/icons/ebook.png" />
+                        <h5>Patient Education</h5>
+                        <p>Providing education to patients and their caregivers on proper wound care, dressing changes, and preventive measures to avoid future wounds.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Gallery Begin -->
+   @* <div class="gallery">
+        <div class="gallery__container">
+            <div class="grid-sizer"></div>
+            <div class="gc__item set-bg" data-setbg="img/gallery/gallery-1.jpg">
+                <a href="img/gallery/gallery-1.jpg" class="image-popup"><i class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item set-bg" data-setbg="img/gallery/gallery-2.jpg">
+                <a href="img/gallery/gallery-2.jpg" class="image-popup"><i class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item set-bg" data-setbg="img/gallery/gallery-3.jpg">
+                <a href="img/gallery/gallery-3.jpg" class="image-popup"><i class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item gc__item__large set-bg" data-setbg="img/gallery/gallery-4.jpg">
+                <a href="img/gallery/gallery-4.jpg" class="image-popup"><i class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item set-bg" data-setbg="img/gallery/gallery-5.jpg">
+                <a href="img/gallery/gallery-5.jpg" class="image-popup"><i class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item set-bg" data-setbg="img/gallery/gallery-6.jpg">
+                <a href="img/gallery/gallery-6.jpg" class="image-popup"><i class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item set-bg" data-setbg="img/gallery/gallery-7.jpg">
+                <a href="img/gallery/gallery-7.jpg" class="image-popup"><i class="fa fa-search-plus"></i></a>
+            </div>
+        </div>
+    </div>*@
+    <!-- Gallery End -->
+    <!-- Latest News Begin -->
+    <section class="latest spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-6">
+                    <div class="section-title">
+                        <span>Our News</span>
+                        <h2>Wound care tips</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="latest__item">
+                        <h5><a href="#">Gently Clean the Wound</a></h5>
+                        <p>
+                            For acute wounds, clean the wound with mild soap and warm water. For chronic wounds, use a saline solution or as directed by your healthcare provider.
+                            Avoid Harsh Solutions: Avoid using hydrogen peroxide, alcohol, or strong antiseptics as they can damage healthy tissue.
+                        </p>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="latest__item">
+                        <h5><a href="#">Eat Well</a></h5>
+                        <p>Maintain a balanced diet with adequate protein, vitamins, and minerals. Proper nutrition is essential for wound healing.</p>
+                       
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="latest__item">
+                        <h5><a href="#">Avoid Picking or Scratching</a></h5>
+                        <p>Do not pick at scabs or attempt to remove any embedded objects (e.g., splinters). This can introduce bacteria.</p>
+                       
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="latest__item">
+                        <h5><a href="#"</a> Antibiotics</h5>
+                        <p>If prescribed antibiotics, take the full course as directed, even if the wound starts to feel better.</p>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+<style>
+    .container img{
+        background-image: url('landing pg\img\landing img.jpg');
+        background-repeat: no-repeat;
+    }
+</style>

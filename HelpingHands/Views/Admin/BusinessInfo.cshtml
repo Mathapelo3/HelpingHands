@@ -1,0 +1,132 @@
+﻿@using HelpingHands.Models
+@model Thusanang
+
+
+@{
+    
+}
+
+<section>
+     <div class="row">
+            <div class="col-xl-4">
+
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                        <div class="social-links mt-2">
+                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xl-8">
+
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <!-- Bordered Tabs -->
+                        <ul class="nav nav-tabs nav-tabs-bordered">
+
+                            <li class="nav-item">
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                            </li>
+
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Info</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <h5 class="card-title">About</h5>
+                            <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+
+                            <h5 class="card-title">Profile Details</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                                <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Company</div>
+                                <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Job</div>
+                                <div class="col-lg-9 col-md-8">Web Designer</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Country</div>
+                                <div class="col-lg-9 col-md-8">USA</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Address</div>
+                                <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Phone</div>
+                                <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Email</div>
+                                <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                            </div>
+
+                                                
+                            <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                            <!-- End Profile Edit Form -->
+                            <form class="row g-3">
+                                <div class="col-md-12">
+                                    <label for="inputName5" class="form-label">Organization Name</label>
+                                    <input asp-for="OrganizationName" class="form-control" id="inputName5">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputEmail5" class="form-label">NPO Number</label>
+                                    <input asp-for="Nponumber" class="form-control" id="inputEmail5">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputPassword5" class="form-label">Email</label>
+                                    <input asp-for="Email" class="form-control" id="inputPassword5">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputPassword5" class="form-label">Contact Number</label>
+                                    <input asp-for="ContactNumber" class="form-control" id="inputPassword5">
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputAddress5" class="form-label">Address Line 1</label>
+                                    <input asp-for="AddressLine1" type="text" class="form-control" id="inputAddres5s" placeholder="1234 Main St">
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputAddress2" class="form-label">Address Line 2</label>
+                                    <input asp-for="AddressLine2" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="inputZip" class="form-label">Zip</label>
+                                    <input type="text" class="form-control" id="inputZip">
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputAddress2" class="form-label">Operating Hours</label>
+                                    <input asp-for="OperatingHours" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                                </div>
+                                <div class="text-center">
+                                    <button type="reset" class="btn btn-secondary">Update</button>
+                                </div>
+                            </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</section>

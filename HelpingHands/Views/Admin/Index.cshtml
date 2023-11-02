@@ -1,0 +1,467 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<body class="main">
+    <section>
+        <h2 style="color: #16697a">Admin Dashboard</h2>
+    </section>
+
+    <section class="section" style="background-color: #f0f3f5">
+        <div class="row">
+            <div class=" col-xl-3 col-md-6">
+                <a asp-action="ManageNurses" asp-controller="Admin">
+                    <div class="card bg-pattern">
+                        <div class="card-body btn btn-button">
+                            <div class="float-right">
+                                <img src="~/image/nurse icon.png" />
+                            </div>
+                            <h5 class="font-size-20 mt-0 pt-1">24</h5>
+                            <h6 class="text-muted mb-0">Manage Nurses</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <a asp-action="ManageOfficeManager" asp-controller="Admin">
+                    <div class="card bg-pattern">
+                        <div class="card-body btn btn-button">
+                            <div class="float-right">
+                                <img src="~/image/multitasking.png" />
+                            </div>
+                            <h5 class="font-size-20 mt-0 pt-1">24</h5>
+                            <h6 class="text-muted mb-0">Manage Office Manager</h6>
+                        </div>
+                    </div>
+                </a> 
+            </div>
+            <div class="col-xl-3 col-md-6">
+               <a asp-action="BusinessInfo" asp-controller="Admin">
+                    <div class="card bg-pattern">
+                        <div class="card-body btn btn-button">
+                            <div class="float-right">
+                                <img src="~/image/briefcase.png" />
+                            </div>
+                            <h5 class="font-size-20 mt-0 pt-1">24</h5>
+                            <h6 class="text-muted mb-0">Business Information</h6>
+                        </div>
+                    </div>
+               </a>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <a asp-action="ManageCities" asp-controller="Admin">
+                    <div class="card bg-pattern">
+                        <div class="card-body btn btn-button">
+                            <div class="float-right">
+                                <img src="~/image/location.png" />
+                            </div>
+                            <h5 class="font-size-20 mt-0 pt-1">24</h5>
+                            <h6 class="text-muted mb-0">Manage Cities</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+           <div class="col-lg-6">
+                    <div class="card my-5">
+                        <h5 class="card-header  text-white" style="background-color:#16697a">
+                            Todo List
+                        </h5>
+                        <div class="card-body">
+                            <div class="card-footer">
+                                <form id="form">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="todo" placeholder="Add new todo item">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary" style="background-color:#16697a">
+                                                <i class="fas fa-plus"></i> Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item">
+                                    <i class="far fa-square done-icon"></i>
+                                    <i class="far fa-check-square done-icon"></i>
+                                    <span class="todo-text">It's a dummy todo item</span>
+                                    <i class="far fa-trash-alt"></i>
+                                </li>
+                                <li class="list-group-item done">
+                                    <i class="far fa-square done-icon"></i>
+                                    <i class="far fa-check-square done-icon"></i>
+                                    <span class="todo-text">This task is complete</span>
+                                    <i class="far fa-trash-alt"></i>
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="far fa-square done-icon"></i>
+                                    <i class="far fa-check-square done-icon"></i>
+                                    <span class="todo-text">Here is another item</span>
+                                    <i class="far fa-trash-alt"></i>
+                                </li>
+                            </ul>
+                            <button id="clearBtn" type="button" class="btn btn-dark btn-sm" style="background-color:#16697a">Clear All</button>
+                        </div>
+                    </div>
+           </div>
+           <div class="col-lg-6">
+                <div class="padding">
+                    
+                            <div class="card user-activity-card">
+                                <div class="card-header">
+                                    <h5>System Activity</h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row m-b-25">
+                                        <div class="col-auto p-r-0">
+                                            <div class="u-img"> <img src=" https://i.imgur.com/UIhwGhr.jpg" alt="user image" class="img-radius cover-img"> <img src="https://img.icons8.com/ultraviolet/40/000000/active-state.png" alt="user image" class="img-radius profile-img"> </div>
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="m-b-5">Timothy Husai</h6>
+                                            <p class="text-muted m-b-0">For what reason would it be advisable.</p>
+                                            <p class="text-muted m-b-0"><i class="mdi mdi-timer feather icon-clock m-r-10"></i>24 min ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="row m-b-25">
+                                        <div class="col-auto p-r-0">
+                                            <div class="u-img"> <img src="https://i.imgur.com/rAInTHU.jpg" alt="user image" class="img-radius cover-img"> <img src="https://img.icons8.com/office/16/000000/active-state.png" alt="user image" class="img-radius profile-img"> </div>
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="m-b-5">Simkil Ahleu</h6>
+                                            <p class="text-muted m-b-0">That might be little bit risky to have crew</p>
+                                            <p class="text-muted m-b-0"><i class="mdi mdi-timer feather icon-clock m-r-10"></i>12 hours ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="row m-b-25">
+                                        <div class="col-auto p-r-0">
+                                            <div class="u-img"> <img src="https://i.imgur.com/rAInTHU.jpg" alt="user image" class="img-radius cover-img"> <img src="https://img.icons8.com/office/16/000000/active-state.png" alt="user image" class="img-radius profile-img"> </div>
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="m-b-5">John Deo</h6>
+                                            <p class="text-muted m-b-0">For what reason would it be advisable</p>
+                                            <p class="text-muted m-b-0"><i class="mdi mdi-timer feather icon-clock m-r-10"></i>2 min ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="row m-b-25">
+                                        <div class="col-auto p-r-0">
+                                            <div class="u-img"> <img src=" https://i.imgur.com/UIhwGhr.jpg" alt="user image" class="img-radius cover-img"> <img src="https://img.icons8.com/ultraviolet/40/000000/active-state.png" alt="user image" class="img-radius profile-img"> </div>
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="m-b-5">John Deo</h6>
+                                            <p class="text-muted m-b-0">member like them. For what reason.</p>
+                                            <p class="text-muted m-b-0"><i class="mdi mdi-timer feather icon-clock m-r-10"></i>12 min ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-center"> <a href="#!" class="b-b-primary text-primary" data-abc="true">View all Projects</a> </div>
+                                </div>
+                            </div>
+                </div>
+           </div>
+        </div>
+    </section>
+
+    <script>
+        // Define all UI variable
+        const todoList = document.querySelector('.list-group');
+        const form = document.querySelector('#form');
+        const todoInput = document.querySelector('#todo');
+        const clearBtn = document.querySelector('#clearBtn');
+        const search = document.querySelector('#search');
+
+        // Load all event listners
+        allEventListners();
+
+
+        // Functions of all event listners
+        function allEventListners() {
+            // Add todo event
+            form.addEventListener('submit', addTodo);
+            // Remove and complete todo event
+            todoList.addEventListener('click', removeTodo);
+            // Clear or remove all todos
+            clearBtn.addEventListener('click', clearTodoList);
+            // Search todo event
+            search.addEventListener('keyup', searchTodo);
+        }
+
+
+        // Add todo item function
+        function addTodo(e) {
+            if (todoInput.value !== '') {
+                // Create li element
+                const li = document.createElement('li');
+                // Add class
+                li.className = 'list-group-item';
+                // Add complete and remove icon
+                li.innerHTML = `<i class="far fa-square done-icon"></i>
+                                <i class="far fa-check-square done-icon"></i>
+                                <i class="far fa-trash-alt"></i>`;
+                // Create span element
+                const span = document.createElement('span');
+                // Add class
+                span.className = 'todo-text';
+                // Create text node and append to span
+                span.appendChild(document.createTextNode(todoInput.value));
+                // Append span to li
+                li.appendChild(span);
+                // Append li to ul (todoList)
+                todoList.appendChild(li);
+
+                // Clear input
+                todoInput.value = '';
+            } else {
+                alert('Please add todo');
+            }
+
+            e.preventDefault();
+        }
+
+
+        // Remove and complete todo item function
+        function removeTodo(e) {
+            // Remove todo
+            if (e.target.classList.contains('fa-trash-alt')) {
+                if (confirm('Are you sure')) {
+                    e.target.parentElement.remove();
+                }
+            }
+
+            // Complete todo
+            if (e.target.classList.contains('todo-text')) {
+                e.target.parentElement.classList.toggle('done');
+            }
+            if (e.target.classList.contains('done-icon')) {
+                e.target.parentElement.classList.toggle('done');
+            }
+        }
+
+
+        // Clear or remove all todos function
+        function clearTodoList() {
+            todoList.innerHTML = '';
+        }
+
+
+        // Search todo function
+        function searchTodo(e) {
+            const text = e.target.value.toLowerCase();
+            const allItem = document.querySelectorAll('.list-group-item');
+            for (let task of allItem) {
+                const item = task.textContent;
+                if (item.toLowerCase().indexOf(text) != -1) {
+                    task.style.display = 'flex';
+                } else {
+                    task.style.display = 'none';
+                }
+            };
+        }
+    </script>
+
+</body>
+
+<style>
+    :root {
+        --white-color: #fff;
+        --blue-color: #16697a;
+        --grey-color: #44a1a0;
+        --grey-color-light: #004346;
+    }
+    .section{
+       background-color:#fff;
+        padding: 30px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Add the shadow effect */
+        border-radius: 1px;
+    }
+
+    .card {
+        border: 0,8px solid var(--blue-color);
+        border-radius: 2px;
+        margin-bottom: 24px;
+        -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+        box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+    }
+    /*First 6*/
+    .wrapper {
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-gap: 10px;
+        background-color: #fff;
+        color: #444;
+    }
+
+    .box {
+        background-color: #444;
+        color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        font-size: 150%;
+    }
+
+    .notes {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* Two columns with equal width */
+        grid-gap: 10px;
+    }
+
+    .card {
+        box-shadow: 0px 0px 3px 1px #ddd;
+    }
+
+    .list-group-item {
+        padding: .5rem .75rem;
+        border: 1px solid rgba(0, 0, 0, .07);
+        display: flex;
+        align-items: center;
+    }
+
+        .list-group-item:first-child {
+            border-radius: 0;
+        }
+
+        .list-group-item:last-child {
+            border-radius: 0;
+        }
+
+        .list-group-item i.fa-square {
+            flex-grow: 0;
+            cursor: pointer;
+            order: 1;
+        }
+
+        .list-group-item i.fa-check-square {
+            display: none;
+        }
+
+        .list-group-item i.fa-trash-alt {
+            flex-grow: 0;
+            cursor: pointer;
+            color: #dc3545;
+            order: 3;
+        }
+
+            .list-group-item i.fa-trash-alt:hover {
+                color: #af1e2c;
+            }
+
+        .list-group-item .todo-text {
+            flex-grow: 1;
+            margin: 0 10px;
+            order: 2;
+        }
+
+        .list-group-item.done i.fa-check-square {
+            flex-grow: 0;
+            cursor: pointer;
+            color: #28a745;
+            display: block;
+        }
+
+        .list-group-item.done i.fa-square {
+            display: none;
+        }
+
+        .list-group-item.done .todo-text {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+    .padding {
+        padding: 3rem !important
+    }
+
+   
+
+    .card {
+        border-radius: 5px;
+        -webkit-box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+        box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+        border: 0.5px var(--blue-color) ;
+        margin-bottom: 30px
+    }
+
+        .card .card-header {
+            background-color: transparent;
+            border-bottom: none;
+            padding: 25px 20px
+        }
+
+    .card-block {
+        padding: 1.25rem;
+        margin-top: -40px
+    }
+
+    .card .card-header h5 {
+        margin-bottom: 0;
+        color: #505458;
+        font-size: 14px;
+        font-weight: 600;
+        display: inline-block;
+        margin-right: 10px;
+        line-height: 1.4
+    }
+
+    .text-muted {
+        margin-bottom: 0px
+    }
+
+    .user-activity-card .u-img .cover-img {
+        width: 60px;
+        height: 60px
+    }
+
+    .m-b-25 {
+        margin-top: 20px
+    }
+
+    .user-activity-card .u-img .profile-img {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        bottom: -5px;
+        right: -5px
+    }
+
+    .img-radius {
+        border-radius: 5px
+    }
+
+    .user-activity-card .u-img {
+        position: relative
+    }
+
+    .m-b-5 {
+        margin-bottom: 5px
+    }
+
+    h6 {
+        font-size: 14px
+    }
+
+    .card .card-block p {
+        line-height: 25px
+    }
+
+    .text-muted {
+        color: #919aa3 !important
+    }
+
+    .card .card-block p {
+        line-height: 25px
+    }
+
+    .text-muted {
+        color: #919aa3 !important
+    }
+
+    .m-r-10 {
+        margin-right: 4px
+    }
+
+
+    .text-center {
+        margin-top: 15px
+    }
+</style>

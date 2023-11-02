@@ -1,0 +1,52 @@
+﻿@model IEnumerable< HelpingHands.Models.City>
+
+<section>
+
+    <div class="row">
+        <div class="col-lg-18">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">List of Cities</h5>
+                    <br />
+                    <a asp-action="CreateCity" asp-controller="Admin" class="btn btn-primary" style="color:#fff; background-color:#16697a">
+                        Add City<i class='bx bx-plus' style='color:#ffffff'></i>
+                    </a>
+                    
+                    <div class="table-responsive">
+                        <br />
+                        <table class="table" id="tblCity">
+                            <thead>
+                                <tr>
+                                    <th>City Name</th>
+                                    <th>Abbreviation</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var city in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @city.Name 
+                                        </td>
+                                        <td>
+                                            @city.Abbreviation 
+                                        </td>
+                                        <td>
+                                            <a asp-controller="Admin" asp-action="GetSuburbByCity" asp-route-cityId="@city.CityId"><i class='bx bx-info-circle' style='color:#16697a'></i></a> |
+                                            <a asp-action="UpdateCity" asp-controller="Admin" asp-route-id="@city.CityId"><i class='bx bx-edit-alt' style='color:#16697a'></i></a> |
+                                            <a asp-action="DeleteCity" asp-controller="Admin" asp-route-id="@city.CityId"><i class='bx bx-trash' style='color:#d62246'></i></a>
+                                        </td>
+                                    </tr> 
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

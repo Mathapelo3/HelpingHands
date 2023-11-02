@@ -1,0 +1,186 @@
+﻿@using HelpingHands.Models
+@model City
+@{
+    ViewData["Title"] = "CreateCity";
+}
+
+<h3>Create City</h3>
+<br />
+<form method="post" action="/YourController/YourAction">
+    <div id="textboxContainer" class="custom-textbox-container">
+        <div class="col-lg-4">
+            <label>Name</label>
+            <input asp-for="Name" type="text" id="txtName" class="form-control"  />
+        </div>
+        <div class="col-lg-4">
+            <label>Abbreviation</label>
+            <input asp-for="Abbreviation" type="text" class="form-control"  id="txtAbbr" />
+        </div>
+    </div>
+    <button class="btn btn-primary" id="addTextboxes" type="button">Add Textboxes</button>
+    <button asp-action="CreateCities" asp-controller="Admin" class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+
+<table id="dataTable">
+    <thead>
+        <tr>
+            <th>City Name</th>
+            <th>Abbreviation</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Table rows will be added here -->
+    </tbody>
+</table>
+
+<input asp-for ="Name" type="text" id="input1" placeholder="Enter value for Column 1">
+<input asp-for ="Abbreviation" type="text" id="input2" placeholder="Enter value for Column 2">
+<button id="addRow">Add Row</button>
+<button asp-action="CreateCity" asp-controller="Admin" id="submitData">Submit Data</button>
+
+<script>
+    document.getElementById("addRow").addEventListener("click", function () {
+        var input1 = document.getElementById("input1").value;
+        var input2 = document.getElementById("input2").value;
+        var tableBody = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
+
+        var newRow = tableBody.insertRow(tableBody.rows.length);
+        var cell1 = newRow.insertCell(0);
+        var cell2 = newRow.insertCell(1);
+        var cell3 = newRow.insertCell(2);
+
+        cell1.innerHTML = input1;
+        cell2.innerHTML = input2;
+        cell3.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
+
+        // Clear the textboxes after adding the row
+        document.getElementById("input1").value = "";
+        document.getElementById("input2").value = "";
+    });
+
+    document.getElementById("submitData").addEventListener("click", function () {
+        // Collect data from the table and prepare it for submission to the server
+        var tableData = [];
+        var tableRows = document.getElementById("dataTable").getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+        for (var i = 0; i < tableRows.length; i++) {
+            var cells = tableRows[i].getElementsByTagName("td");
+            var data = {
+                Column1: cells[0].textContent,
+                Column2: cells[1].textContent
+            };
+            tableData.push(data);
+        }
+
+        // Send the data to the server via an AJAX POST request
+        fetch("/Admin/CreateCity", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(tableData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("Data submitted successfully!");
+                    // Optionally, clear the table or perform any other action
+                    clearTable();
+                } else {
+                    alert("Error submitting data.");
+                }
+            })
+            .catch(error => {
+                alert("An error occurred: " + error);
+            });
+    });
+
+    function deleteRow(button) {
+        var row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
+
+    function clearTable() {
+        var tableBody = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
+        tableBody.innerHTML = "";
+    }
+</script>
+
+
+
+
+
+
+
+
+@*<script>
+    document.getElementById("addTextboxes").addEventListener("click", function () {
+        // Create the first textbox
+        var input1 = document.createElement("input");
+        input1.type = "text";
+        input1.name = "Textbox1"; // Set the name attribute if needed
+        input1.placeholder = "Textbox 1";
+        input1.classList.add("custom-textbox"); // Add the CSS class
+
+        // Create the second textbox
+        var input2 = document.createElement("input");
+        input2.type = "text";
+        input2.name = "Textbox2"; // Set the name attribute if needed
+        input2.placeholder = "Textbox 2";
+        input2.classList.add("custom-textbox"); // Add the CSS class
+
+        // Get the container element
+        var container = document.getElementById("textboxContainer");
+
+        // Append the textboxes to the container
+        container.appendChild(input1);
+        container.appendChild(input2);
+    });
+</script>*@
+
+<style>
+    
+    /* Style for the container */
+    .custom-textbox-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    /* Style for each input container */
+    .custom-textbox-container .col-lg-4 {
+        margin-right: 10px; /* Add spacing between columns */
+    }
+
+    /* Style for labels */
+    .custom-textbox-container label {
+        font-weight: bold;
+    }
+
+    /* Style for text inputs */
+    .custom-textbox-container .form-control {
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    /* Style for the "Add Textboxes" button */
+    .custom-textbox-container #addTextboxes {
+        background-color: #007bff; /* Blue background color */
+        color: #fff; /* White text color */
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        /* Add a hover effect for the button */
+        .custom-textbox-container #addTextboxes:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+</style>
+
+
+
+

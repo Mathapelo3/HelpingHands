@@ -1,0 +1,50 @@
+﻿@using HelpingHands.Models
+@model IEnumerable<Suburb>
+
+
+<div class="row">
+    <div class="col-lg-18">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">List of Suburbs under </h5>
+                <br />
+                <a asp-action="CreateCity" asp-controller="Admin" class="btn btn-primary" style="color:#fff; background-color:#16697a">
+                    Add Suburb<i class='bx bx-plus' style='color:#ffffff'></i>
+                </a>
+
+                <div class="table-responsive">
+                    <br />
+                    <table class="table" id="tblCity">
+                        <thead>
+                            <tr>
+                                <th>Suburb Name</th>
+                                <th>Postal Code</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            @foreach(var sub in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @sub.Suburbs
+                                    </td>
+                                    <td>
+                                        @sub.PostalCode
+                                    </td>
+                                    
+                                    @*<td>
+                                        <a asp-action="CityDetails" asp-controller="Admin" asp-route-id="@suburb.SuburbId"><i class='bx bx-info-circle' style='color:#16697a'></i></a> |
+                                        <a asp-action="UpdateCity" asp-controller="Admin" asp-route-id="@suburb.SuburbId"><i class='bx bx-edit-alt' style='color:#16697a'></i></a> |
+                                        <a asp-action="DeleteCity" asp-controller="Admin" asp-route-id="@suburb.SuburbId"><i class='bx bx-trash' style='color:#d62246'></i></a>
+                                    </td>*@
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

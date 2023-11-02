@@ -1,0 +1,79 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: Poppins, sans-serif;
+    background-color: #fff;
+    padding-top: 100px;
+    padding-left: 100px
+
+}
+
+/*account navigation*/
+.login-logout-card {
+    
+    border-color: #16697a
+}
+
+    .login-logout-card .card-header {
+        padding: 0px 0px 12px 0px;
+        background-color: #16697a;
+    }
+
+    .login-logout-card ul.nav-tabs {
+        margin: 0px 0px -12px 0px;
+        
+    }
+
+    .login-logout-card li.nav-item {
+        width: 50%;
+       
+    }
+
+    .login-logout-card a.nav-link {
+        font-size: 1rem;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+    }
+
+.login-logout-card .card-body {
+    padding: 10px 20px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    #sidebarOpen {
+        font-size: 25px;
+        display: block;
+        margin-right: 10px;
+        cursor: pointer;
+        color: var(--grey-color);
+    }
+
+    .sidebar.close {
+        left: -100%;
+    }
+
+    .search_bar {
+        display: none;
+    }
+
+    .sidebar.close .bottom_content {
+        left: -100%;
+    }
+}
