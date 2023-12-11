@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data;
 using System.Data.Common;
 
@@ -142,7 +143,29 @@ namespace HelpingHands.Controllers
             return View();
         }
 
-        
+        private List<AspNetRole> GetRoles()
+        {
+            var role = _connection.Query<AspNetRole>("RoleList", commandType: CommandType.StoredProcedure).ToList();
+
+            return role;
+        }
+
+        [HttpGet]
+        public IActionResult RoleList()
+        {
+            var roles = GetRoles();
+
+            var roleList = roles.Select(role => new SelectListItem
+            {
+                Value = role.Id.ToString(),
+                Text = role.Name
+            }).ToList();
+
+            ViewBag.RoleList = roleList;
+            return View();
+        }
+
+
 
 
 

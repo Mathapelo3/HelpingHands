@@ -7,6 +7,7 @@ using Microsoft.Data.SqlClient;
 using HelpingHands.Repositories;
 using System.Security.Cryptography.X509Certificates;
 
+
 internal class Program
 {
     private static async Task Main(string[] args)

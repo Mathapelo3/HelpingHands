@@ -3,7 +3,7 @@ using HelpingHands.Areas.Identity.Data;
 using HelpingHands.Data;
 using HelpingHands.Models;
 using HelpingHands.Repositories;
-using Microsoft.AspNet.Identity;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -14,16 +14,21 @@ using System.Data;
 namespace HelpingHands.Controllers
 {
 
-   
+    [Authorize(Roles = "Admin, OfficeManager, Nurse, Patient")]
     public class AccountController : Controller
     {
+
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly HelpingHandsContext _db;
         private readonly PatientRepository _patientRepository;
         private readonly UserRepo _userRepo;
 
 
-        public AccountController(HelpingHandsContext db, PatientRepository patientRepository, UserRepo userRepo)
+        public AccountController(HelpingHandsContext db, PatientRepository patientRepository, UserRepo userRepo, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
             _db = db;
             _userRepo = userRepo;
            _patientRepository = patientRepository;
@@ -82,7 +87,42 @@ namespace HelpingHands.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-       
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+
+            if (!changePasswordResult.Succeeded)
+            {
+                foreach (var error in changePasswordResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(model);
+            }
+
+            await _signInManager.RefreshSignInAsync(user);
+            return RedirectToAction("ChangePasswordConfirmation");
+        }
+
+        [HttpGet]
+        public IActionResult ChangePasswordConfirmation()
+        {
+            return View();
+        }
+
+
 
 
         ////Get: Patient to create profile

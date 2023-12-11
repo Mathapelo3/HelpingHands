@@ -1,0 +1,153 @@
+﻿@using HelpingHands.Models
+@model CareContractVM
+
+<section class="section profile">
+    <div class="row">
+   
+
+        <div class="col-xl-9">
+
+            <div class="card">
+                <div class="card-body pt-3">
+                 
+                    <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <h5 class="card-title">@Model.FirstName @Model.Surname's Care Contract</h5>
+                            
+
+                           
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Contract No</div>
+                                <div class="col-lg-9 col-md-8">@Model.ContractNo</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Date Created</div>
+                                <div class="col-lg-9 col-md-8">@Model.ContractDate.ToString("dd-MM-yyyy")</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Address</div>
+                                <div class="col-lg-9 col-md-8">@Model.AddressLine1</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Address</div>
+                                <div class="col-lg-9 col-md-8">@Model.AddressLine2</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Suburb</div>
+                                <div class="col-lg-9 col-md-8">@Model.Suburb</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Wound Description</div>
+                                <div class="col-lg-9 col-md-8">@Model.WoundDescription</div>
+                            </div>
+
+                            <form method="post" asp-action="UpdateContract" asp-controller="OfficeManager">
+                                <input type="hidden" asp-for="ContractId" value="@Model.ContractId" />
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Select Nurse</div>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select asp-for="Nurse" asp-items="ViewBag.NurseList" class="form-select" aria-label="Default select example"></select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Update</div>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select asp-for="StatusId" asp-items="ViewBag.StatusList" class="form-select" aria-label="Default select example"></select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Start Date</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        <input asp-for="StartDate" type="date" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">End Date</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        <input asp-for="EndDate" type="date" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary" style="color:#fff; background-color:#16697a;">Save Changes</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div><!-- End Bordered Tabs -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<style>
+    .profile .profile-card img {
+        max-width: 120px;
+    }
+
+    .profile .profile-card h2 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #2c384e;
+        margin: 10px 0 0 0;
+    }
+
+    .profile .profile-card h3 {
+        font-size: 18px;
+    }
+
+    .profile .profile-card .social-links a {
+        font-size: 20px;
+        display: inline-block;
+        color: rgba(1, 41, 112, 0.5);
+        line-height: 0;
+        margin-right: 10px;
+        transition: 0.3s;
+    }
+
+        .profile .profile-card .social-links a:hover {
+            color: #16697a;
+        }
+
+    .profile .profile-overview .row {
+        margin-bottom: 20px;
+        font-size: 15px;
+    }
+
+    .profile .profile-overview .card-title {
+        color: #16697a;
+    }
+
+    .profile .profile-overview .label {
+        font-weight: 600;
+        color: rgba(1, 41, 112, 0.6);
+    }
+
+    .profile .profile-edit label {
+        font-weight: 600;
+        color: rgba(1, 41, 112, 0.6);
+    }
+
+    .profile .profile-edit img {
+        max-width: 120px;
+    }
+
+</style>
+
+
+

@@ -1,0 +1,133 @@
+﻿@using HelpingHands.Models
+@model CareContractVM
+
+@{
+    Layout = "_PatientCareContractLayout";
+}
+
+@{
+    ViewData["Title"] = "Create Care Contract";
+}
+
+
+<section class="section profile">
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body pt-3">
+
+                    <div class="tab-content pt-3">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <!-- Profile Edit Form -->
+                            <br />
+                            <h4>Create Care Contract</h4>
+                            <br />
+                            <br />
+                            <form method="post" action="/Patient/CreateCareContract">
+
+
+                                <div class="row mb-3">
+                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Address Line1</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="AddressLine1" type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Address Line 2</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="AddressLine2" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="company" class="col-md-4 col-lg-3 col-form-label">Select Suburb</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select asp-for="SuburbId" asp-items="ViewBag.SuburbList" class="form-select" aria-label="Default select example"></select>
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row mb-3">
+                                    <label for="company" class="col-md-4 col-lg-3 col-form-label">Wound Description</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <textarea asp-for="WoundDescription" class="form-control" style="height: 100px"></textarea>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="text-right">
+                                    <button asp-action="CreateCareContract" asp-controller="Patient" type="submit" class="btn btn-primary" style="color:#fff; background-color:#16697a;" new="i">Request care</button>
+                                </div>
+
+                            </form>
+                            <br />
+                            <br />
+
+                        </div>
+
+                    </div><!-- End Bordered Tabs -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    .profile .profile-card img {
+        max-width: 120px;
+    }
+
+    .profile .profile-card h2 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #2c384e;
+        margin: 10px 0 0 0;
+    }
+
+    .profile .profile-card h3 {
+        font-size: 18px;
+    }
+
+    .profile .profile-card .social-links a {
+        font-size: 20px;
+        display: inline-block;
+        color: rgba(1, 41, 112, 0.5);
+        line-height: 0;
+        margin-right: 10px;
+        transition: 0.3s;
+    }
+
+        .profile .profile-card .social-links a:hover {
+            color: #16697a;
+        }
+
+    .profile .profile-overview .row {
+        margin-bottom: 20px;
+        font-size: 15px;
+    }
+
+    .profile .profile-overview .card-title {
+        color: #16697a;
+    }
+
+    .profile .profile-overview .label {
+        font-weight: 600;
+        color: rgba(1, 41, 112, 0.6);
+    }
+
+    .profile .profile-edit label {
+        font-weight: 600;
+        color: rgba(1, 41, 112, 0.6);
+    }
+
+    .profile .profile-edit img {
+        max-width: 120px;
+    }
+
+</style>

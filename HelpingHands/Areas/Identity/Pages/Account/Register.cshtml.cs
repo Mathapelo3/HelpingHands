@@ -21,11 +21,16 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+//using HelpingHands.Models;
+using HelpingHands.Data;
+using HelpingHands.Models;
+
 
 namespace HelpingHands.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
+        private readonly ApplicationDbContext _context;
         private readonly SignInManager<HelpingHandsUser> _signInManager;
         private readonly UserManager<HelpingHandsUser> _userManager;
         private readonly IUserStore<HelpingHandsUser> _userStore;
@@ -36,6 +41,7 @@ namespace HelpingHands.Areas.Identity.Pages.Account
 
 
         public RegisterModel(
+            ApplicationDbContext context,
             UserManager<HelpingHandsUser> userManager,
             IUserStore<HelpingHandsUser> userStore,
             SignInManager<HelpingHandsUser> signInManager,
@@ -43,6 +49,7 @@ namespace HelpingHands.Areas.Identity.Pages.Account
             IEmailSender emailSender,
             RoleManager<IdentityRole> roleManager)
         {
+            _context = context;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
@@ -82,8 +89,16 @@ namespace HelpingHands.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             /// 
+            [Required(ErrorMessage = "Surname name is Required")]
+            [StringLength(30, MinimumLength = 3)]
+            public string Surname { get; set; }
+
+            [Required(ErrorMessage = "First name is Required")]
+            [StringLength(20, MinimumLength = 3)]
+            public string FirstName { get; set; } = null!;
+
             [Required(AllowEmptyStrings = false, ErrorMessage = "Username is Required.")]
-            [StringLength(16, MinimumLength = 6)]
+            [StringLength(30, MinimumLength = 6)]
             [Display(Name = "Username ")]
             public string Username { get; set; } = null!;
 
@@ -149,10 +164,14 @@ namespace HelpingHands.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
+                user.FirstName = Input.FirstName;
+                user.Surname = Input.Surname;
+
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 user.UserName = Input.Username;
                 user.PhoneNumber = Input.PhoneNumber;
+
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -163,13 +182,27 @@ namespace HelpingHands.Areas.Identity.Pages.Account
                     if (Input.Role == null)
                     {
                         await _userManager.AddToRoleAsync(user, "Patient");
-                        return RedirectToAction("PatientProfile", "Account", new { userId = user.Id });
+                        var patientProfile = new Patient { UserId = user.Id, FirstName = user.FirstName, Surname = user.Surname };
+                        _context.Patients.Add(patientProfile);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction("PatientProfile", "Patient");
 
+                    }
+                    else if (Input.Role == "Nurse")
+                    {
+
+                        
+                            await _userManager.AddToRoleAsync(user, "Nurse");
+                            var nurseProfile = new Nurse { UserId = user.Id, FirstName = user.FirstName, Surname = user.Surname };
+                            _context.Nurses.Add(nurseProfile);
+                            await _context.SaveChangesAsync();
+                            return RedirectToPage("/Account/AddUser");
+                        
                     }
                     else
                     {
                         await _userManager.AddToRoleAsync(user, Input.Role);
-                        return RedirectToPage("Add User");
+                        return RedirectToPage("/Account/AddUser");
                     }
 
                     var userId = await _userManager.GetUserIdAsync(user);

@@ -1,5 +1,7 @@
 ﻿using Dapper;
+using HelpingHands.Data;
 using HelpingHands.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace HelpingHands.Repositories
@@ -7,10 +9,12 @@ namespace HelpingHands.Repositories
     public class SuburbRepo : ISuburbsRepo
     {
         private readonly IDbConnection _connection;
+        private readonly ApplicationDbContext _context;
 
-        public SuburbRepo(IDbConnection connection)
+        public SuburbRepo(IDbConnection connection, ApplicationDbContext context )
         {
             _connection = connection;
+            _context = context;
         }
 
         public void DMLSuburbs(string procedureName, DynamicParameters parameters, CommandType commandType = CommandType.StoredProcedure)
@@ -35,6 +39,11 @@ namespace HelpingHands.Repositories
             var suburb = _connection.Query<Suburb>(query, new { CityId = cityId });
 
             return suburb;
+        }
+
+        Task<IEnumerable<SuburbVM>> ISuburbsRepo.GetSuburbs()
+        {
+            throw new NotImplementedException();
         }
     }
 }

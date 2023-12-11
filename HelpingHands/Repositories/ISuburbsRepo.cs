@@ -6,7 +6,7 @@ namespace HelpingHands.Repositories
 {
     public interface ISuburbsRepo
     {
-        IEnumerable<Suburb> GetSuburbs(string procedureName, DynamicParameters parameters, CommandType commandType = CommandType.StoredProcedure);
+        Task<IEnumerable<SuburbVM>>GetSuburbs();
 
         IEnumerable<Suburb>GetSuburbsByCity(long cityId);
 
