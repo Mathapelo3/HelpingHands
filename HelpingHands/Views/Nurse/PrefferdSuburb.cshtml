@@ -1,0 +1,23 @@
+﻿<section class="section profile">
+    <div class="row">
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var suburb in Model)
+                    {
+                        <tr data-href="@Url.Action("NewContracts", "Nurse", new { id = suburb.Id })">
+                            <td>@suburb.Id</td>
+                            <td>@suburb.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

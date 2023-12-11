@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CareContractVM>
+
+    @{
+    Layout = "_ContractLayout";
+}
+
+<h2>Assigned Care Contracts</h2>
+<hr/>
+<br/>
+
+<form asp-action="AssignedContract" method="get">
+    <div class="row mb-3">
+        <label for="startDate" class="col-md-2 col-form-label">Start Date:</label>
+        <div class="col-md-3">
+            <input type="date" class="form-control" id="startDate" name="startDate">
+        </div>
+        <label for="endDate" class="col-md-2 col-form-label">End Date:</label>
+        <div class="col-md-3">
+            <input type="date" class="form-control" id="endDate" name="endDate">
+        </div>
+       
+        <div class="col-md-2">
+            <input type="submit" value="Filter" class="btn btn-primary" style="color:#fff; background-color:#16697a;">
+        </div>
+    </div>
+</form>
+<br/>
+
+<div class="card">
+    <div class="card-body">
+        
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Contract Date</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Suburb</th>
+                    <th scope="col">City</th>
+                    <th scope="col">info</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ContractDate.ToString("yyyy-MM-dd")</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.Surname</td>
+                        <td>@item.AddressLine1</td>
+                        <td>@item.Suburb</td>
+                        <td>@item.AddressLine2</td>
+                        <td> <a asp-action="AssignContract" asp-controller="OfficeManager" asp-route-contractId="@item.ContractId"><i class='bx bx-info-circle' style='color:#16697a'></i></a></td>
+
+                        
+                        
+                        
+                    </tr>
+                }
+                
+            </tbody>
+        </table>
+
+
+    </div>
+</div>

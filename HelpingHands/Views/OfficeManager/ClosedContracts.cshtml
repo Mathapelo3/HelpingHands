@@ -1,0 +1,140 @@
+﻿@using HelpingHands.Models
+@model List<CareContractVM>
+
+@{
+    Layout = "_ContractLayout";
+}
+
+<section class="section profile">
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body pt-3">
+
+                    <div class="tab-content pt-3">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <h5 class="card-title">Closed Care Contracts</h5>
+                            @if (Model != null && Model.Any())
+                            {
+                                <hr />
+                                <br />
+
+                                <form asp-action="ClosedContracts" method="get">
+                                    <div class="row mb-3">
+                                        <label for="startDate" class="col-md-2 col-form-label">Start Date:</label>
+                                        <div class="col-md-3">
+                                            <input type="date" class="form-control" id="startDate" name="startDate">
+                                        </div>
+                                        <label for="endDate" class="col-md-2 col-form-label">End Date:</label>
+                                        <div class="col-md-3">
+                                            <input type="date" class="form-control" id="endDate" name="endDate">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <input type="submit" value="Filter" class="btn btn-primary" style="color:#fff; background-color:#16697a;">
+                                        </div>
+                                    </div>
+                                </form>
+                                <br />
+                                <table class="table" id="tblCity">
+                                    <thead>
+                                        <tr>
+                                            <th>First Name</th>
+                                            <th>Surname</th>
+                                            <th>Contract No</th>
+                                            <th>Contract Date</th>
+                                            <th>Suburb</th>
+                                            <th>Assign</th>
+
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var contract in Model)
+                                        {
+                                            <tr>
+                                                <td>@contract.FirstName</td>
+                                                <td>@contract.Surname</td>
+                                                <td>@contract.ContractNo</td>
+                                                <td>@contract.ContractDate.ToString("dd-MM-yyyy")</td>
+                                                <td>@contract.Suburb</td>
+                                                <td> <a asp-action="AssignContract" asp-controller="OfficeManager" asp-route-contractId="@contract.ContractId"><i class='bx bx-info-circle' style='color:#16697a'></i></a></td>
+                                            </tr>
+
+
+                                        }
+
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <h2>No closed care contracts found..</h2>
+                            }
+
+
+                        </div>
+
+                    </div><!-- End Bordered Tabs -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    .profile .profile-card img {
+        max-width: 120px;
+    }
+
+    .profile .profile-card h2 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #2c384e;
+        margin: 10px 0 0 0;
+    }
+
+    .profile .profile-card h3 {
+        font-size: 18px;
+    }
+
+    .profile .profile-card .social-links a {
+        font-size: 20px;
+        display: inline-block;
+        color: rgba(1, 41, 112, 0.5);
+        line-height: 0;
+        margin-right: 10px;
+        transition: 0.3s;
+    }
+
+        .profile .profile-card .social-links a:hover {
+            color: #16697a;
+        }
+
+    .profile .profile-overview .row {
+        margin-bottom: 20px;
+        font-size: 15px;
+    }
+
+    .profile .profile-overview .card-title {
+        color: #16697a;
+    }
+
+    .profile .profile-overview .label {
+        font-weight: 600;
+        color: rgba(1, 41, 112, 0.6);
+    }
+
+    .profile .profile-edit label {
+        font-weight: 600;
+        color: rgba(1, 41, 112, 0.6);
+    }
+
+    .profile .profile-edit img {
+        max-width: 120px;
+    }
+
+</style>

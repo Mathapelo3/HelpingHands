@@ -1,9 +1,10 @@
-﻿
+﻿@using HelpingHands.Models
+@model ChronicCondition
 
 
 <section>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-10">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Create Chronic condition list</h5>
@@ -11,13 +12,12 @@
                     <!-- General Form Elements -->
                     <form>
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Text</label>
+                            <label for="inputText" class="col-sm-2 col-form-label">Condition Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control">
+                                <input asp-for="Name" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Submit Button</label>
                             <div class="col-sm-10">
                                 <button type="submit" class="btn btn-primary">Submit Form</button>
                             </div>
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+       @* <div class="col-lg-6">
             <div class="card">
                 <h3 style="color:#16697a" class="card-title">List of Chronic conditions</h3>
                 <div class="table-responsive text-nowrap">
@@ -64,6 +64,6 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
 </section>

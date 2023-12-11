@@ -1,0 +1,56 @@
+﻿@*@using HelpingHands.Models
+@model PreferredSuburbVM
+
+<div class="container">
+
+    <div class="card">
+
+
+        <div class="card-header d-flex">
+
+            <p class="text-uppercase pt-1">Nurses in this Suburb</p>
+
+            <div class="ms-auto">
+
+                <a class="btn btn-danger" asp-action="GetSuburbs" asp-controller="OfficeManager">Back</a>
+
+            </div>
+        </div>
+        <div class="card-body">
+
+            <h4 class="fw-bold">Suburb: </h4>
+            <h5><i class="bi bi-pin-map text-danger fs-2"></i>  @Model.F </h5>
+
+            <h5 class="mt-5 fw-bold">Nurses:</h5>
+            @if (.Preff.Count() != 0)
+            {
+
+
+                @foreach (var suburb in Model)
+                {
+
+                    if (suburb.Nurse.FirstName != null)
+                    {
+                        <p>
+                            -@name.Nurse.FirstName @name.Nurse.LastName
+                        </p>
+                    }
+                }
+            }
+            else
+            {
+                <div class="alert alert-info text-center">
+                    <p>
+
+
+                        We Do Not Have Nurses in @Model.Name Suburb
+                    </p>
+                    <img src="~/img/map1.png" width="330" height="330" />
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+</div>*@

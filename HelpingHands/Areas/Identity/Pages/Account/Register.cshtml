@@ -1,87 +1,67 @@
 ﻿@page
 @model RegisterModel
 @{
-  
+
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
 
 
-        <form class="row g-3" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2 style="color:#16697a;">Create account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="col-md-6">
-                  <label for="inputEmail5" class="form-label">Name<span class="text-danger">*</span></label>
-                  <input type="email" class="form-control" id="inputEmail5">
-            </div>
-
-            <div class="col-md-6">
-                  <label for="inputEmail5" class="form-label">Surname<span class="text-danger">*</span></label>
-                  <input type="email" class="form-control" id="inputEmail5">
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Input.Email"><span class="text-danger">*</span></label>
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <input asp-for="Input.Username" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Username"><span class="text-danger">*</span></label>
-                <span asp-validation-for="Input.Username" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Input.PhoneNumber"><span class="text-danger">*</span></label>
-                <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="username" aria-required="true">
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-
-         @*   <div class="col-md-6">
-                <label asp-for="Input.SuburbId"><span class="text-danger">*</span></label>
-                 <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                  </select>
-                <span asp-validation-for="Input.SuburbId" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-6">
-                <label asp-for="Input.BirthDate"> Date of Birth<span class="text-danger">*</span></label>
-                <input type="date" class="form-control">
-                <span asp-validation-for="Input.Username" class="text-danger"></span>
-            </div>*@
-
-            <div class="col-md-12">
-                <label asp-for="Input.Password"><span class="text-danger">*</span></label>
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" id="myInput" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-
-            <div class="col-md-12">
-                <label asp-for="Input.ConfirmPassword"><span class="text-danger">*</span></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" id="myInput" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                <input type="checkbox" onclick="myFunction()">Show Password
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg" style="color:#fff;background-color:#16697a">Register</button>
-        </form>
+<form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <h2 style="color:#16697a;">Create account.</h2>
+    <hr />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-floating mb-3">
+        <input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true" />
+        <label asp-for="Input.FirstName"></label>
+        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Input.Surname" class="form-control" autocomplete="username" aria-required="true" />
+        <label asp-for="Input.Surname"></label>
+        <span asp-validation-for="Input.Surname" class="text-danger"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Input.Username" class="form-control" autocomplete="username" aria-required="true" />
+        <label asp-for="Input.Username"></label>
+        <span asp-validation-for="Input.Username" class="text-danger"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+        <label asp-for="Input.Email"></label>
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="username" aria-required="true" />
+        <label asp-for="Input.PhoneNumber"></label>
+        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" id="myInput" />
+        <label asp-for="Input.Password"></label>
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" id="myInput" />
+        <label asp-for="Input.ConfirmPassword"></label>
+        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+        <input type="checkbox" onclick="myFunction()">Show Password
+    </div>
    
+    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg" style="color:#fff;background-color:#16697a">Register</button>
+</form>
+
 <script>
     function myFunction() {
         var x = document.getElementById("myInput");
-        if (x.type === "password" ) {
+        if (x.type === "password") {
             x.type = "text";
         } else {
             x.type = "password";
         }
     }
 </script>
- 
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

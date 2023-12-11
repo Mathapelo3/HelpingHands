@@ -127,18 +127,18 @@ namespace HelpingHands.Areas.Identity.Pages.Account
                     }
                     else if (await _userManager.IsInRoleAsync(user, "Office Manager"))
                     {
-                        return LocalRedirect("/Office Manager/Index"); // Redirect to User dashboard
+                        return LocalRedirect("/OfficeManager/Index"); // Redirect to User dashboard
                     }
                     else if (await _userManager.IsInRoleAsync(user, "Nurse"))
                     {
-                        return LocalRedirect("/Nurse/Dashboard"); // Redirect to User dashboard
+                        return LocalRedirect("/Nurse/Index"); // Redirect to User dashboard
                     }
                     else if (await _userManager.IsInRoleAsync(user, "Patient"))
                     {
-                        return LocalRedirect("/Patient/Dashboard"); // Redirect to User dashboard
+                        return LocalRedirect("/Patient/Index"); // Redirect to User dashboard
                     }
 
-                   
+
                 }
                 if (result.RequiresTwoFactor)
                 {
