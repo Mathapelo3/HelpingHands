@@ -15,7 +15,7 @@
                     <div class="tab-content pt-3">
 
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                            <h5 class="card-title">Patient Conditions</h5>
+                            <h5 class="card-title">Patient Care Requests</h5>
                             @if (Model != null && Model.Any())
                             {
                                 <table class="table" id="tblCity">
@@ -23,7 +23,7 @@
                                         <tr>
                                             <th>Requested Date</th>
                                             <th>Nurse Assigned</th>
-                                            <th>Contract Status</th>
+                                            <th>Status</th>
                                             
                                             <th>Action</th>
                                         </tr>
@@ -33,17 +33,27 @@
                                         {
                                             <tr>
                                                 <td>
-                                                    @contract.ContractDate
+                                                    @contract.ContractDate.ToShortDateString()
                                                 </td>
                                                 <td>
-                                                    @contract.Nurse
+                                                    @contract.FirstName
+                                                
+                                                    @contract.Surname
                                                 </td>
                                                 <td>
                                                     @contract.Status
                                                 </td>
 
                                                 <td>
-                                                    <a asp-action="DeleteMyCondition" asp-controller="Patient" asp-route-id=""><i class='bx bx-info-circle' style='color:#12839f'></i></a> |
+                                                    <a method="post" asp-action="ViewContract" asp-controller="Patient" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contract Details">
+                                                        <input type="hidden" name="conditionId" value="@contract.ContractId" />
+                                                        <i class='bx bx-info-circle' style='color:#12839f'></i>|
+                                                        
+                                                    </a>
+                                                    <a method="post" asp-action="DeleteContract" asp-controller="Patient" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete Contract">
+                                                        <input type="hidden" name="conditionId" value="@contract.ContractId" />
+                                                        <i class='bx bx-trash' style='color:#e31313'></i>
+                                                    </a>
 
                                                 </td>
                                             </tr>
