@@ -10,14 +10,22 @@
             <div class="card-body pt-3">
                 <ul class="nav nav-tabs nav-tabs-bordered">
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="GetCareContracts" asp-controller="Patient">
-                            Care Requests Overview
+                        <a class="nav-link" asp-action="GetNewContract" asp-controller="Nurse">
+                            New Contracts
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="CreateCareContract" asp-controller="Patient">
-                            Create Care Request
+                        <a class="nav-link" asp-action="GetAssignedContract" asp-controller="Nurse">
+                            Assigned Contracts
+                        </a>
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="GetClosedContract" asp-controller="Nurse">
+                            Closed Contracts
                         </a>
                     </li>
 

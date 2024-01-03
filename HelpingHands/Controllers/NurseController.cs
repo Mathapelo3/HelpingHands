@@ -227,6 +227,14 @@ namespace HelpingHands.Controllers
             return _connection.Query<CareVisitVM>("GetMyAssignedContracts", parameters, commandType: CommandType.StoredProcedure);
         }
 
+        public async Task<IActionResult> UpcomingVisits()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            return View();
+        }
+
+
 
         //PreferredSuburb
 
@@ -295,10 +303,10 @@ namespace HelpingHands.Controllers
         public async Task<IActionResult> AddPreferredSuburb(PreferredSuburbVM suburb)
         {
             var user = await _userManager.GetUserAsync(User);
-            var nurseId = GetNurseId(user.Id);
+          
 
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@NurseId", nurseId, DbType.Int64);
+            parameters.Add("@Id", user.Id, DbType.String);
             parameters.Add("@SuburbId", suburb.SuburbId, DbType.Int64);
 
             var affectedRows = await _connection.ExecuteAsync(
@@ -319,8 +327,7 @@ namespace HelpingHands.Controllers
             return RedirectToAction("CreatePreferredSuburb");
         }
 
-
-
+       
 
 
 

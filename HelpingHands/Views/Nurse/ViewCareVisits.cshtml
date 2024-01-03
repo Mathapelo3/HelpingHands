@@ -22,7 +22,7 @@
                                             <th>Patient Name and Surname</th>
                                             <th>Address</th>
                                             <th>Contact Number</th>
-
+                                            <th>Visit Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -37,9 +37,13 @@
                                                 <td>
                                                     @contract.AddressLine1 
                                                     @contract.AddressLine2
+                                                    @contract.Suburb
                                                 </td>
                                                 <td>
                                                     @contract.PhoneNumber
+                                                </td>
+                                                <td>
+                                                    @contract.VisitDate
                                                 </td>
 
                                                 <td>

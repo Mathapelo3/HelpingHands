@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Diagnostics.Contracts;
 
@@ -228,13 +229,37 @@ namespace HelpingHands.Controllers
             return View(nursesPerSuburb);
         }
 
-        public async Task<IActionResult> GetSuburbs()
+        public IActionResult GetSuburbs(string selectedSuburb)
         {
-            var suburbs = await _connection.QueryAsync<SuburbVM>("SelectSuburb", commandType: CommandType.StoredProcedure);
-            return View(suburbs);
+            List<PreferredSuburbVM> nurses = new List<PreferredSuburbVM>();
 
             
+               
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@Suburb", selectedSuburb);
+
+                nurses = _connection.Query<PreferredSuburbVM>("ViewNursesBySuburb", parameters, commandType: CommandType.StoredProcedure).ToList();
+
+                var suburbList = GetPreferredSuburbVMs();
+                var selectList = suburbList.Select(s => new SelectListItem
+                {
+                    Value = s.Suburb,
+                    Text = s.Suburb
+                }).ToList();
+
+                ViewBag.SuburbList = selectList;
+           
+
+            return View(nurses);
         }
+        private List<PreferredSuburbVM> GetPreferredSuburbVMs()
+        {
+            var suburbs =  _connection.Query<PreferredSuburbVM>("SelectSuburb", commandType: CommandType.StoredProcedure).ToList();
+
+            return suburbs;
+        }
+
         // Date range
 
         public IActionResult AssignedContract(DateTime? startDate, DateTime? endDate)
