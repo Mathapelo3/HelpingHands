@@ -300,6 +300,87 @@ namespace HelpingHands.Controllers
             return View(contracts);
         }
 
+        //Nurses Assigned contracts
+
+        public IActionResult NurseContracts(long nurseId, string statusChar)
+        {
+            // Ensure that a non-null, non-empty status character is passed to the stored procedure.
+            // If it's null or empty, default to 'A'.
+            char? status = string.IsNullOrEmpty(statusChar) ? '2' : statusChar[0];
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", nurseId);
+            parameters.Add("@Status", status);
+
+            var contracts = _connection.Query<CareContractVM>(
+                "NurseContracts",
+                parameters,
+                commandType: CommandType.StoredProcedure
+            ).ToList();
+
+            var statusList = GetContractStatus(); // Assuming this method retrieves the status list
+            ViewBag.StatusList = statusList.Select(s => new SelectListItem
+            {
+                Value = s.ContractStatusId.ToString(),
+                Text = s.Status
+            });
+
+            return View(contracts);
+        }
+
+
+
+
+        [HttpGet]
+        public IActionResult GetContract(long contractId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@ContractId", contractId);
+
+            var contract = _connection.QueryFirstOrDefault<CareVisitVM>("ViewAssignedContractBySuburb", parameters, commandType: CommandType.StoredProcedure);
+
+            if (contract == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(contract);
+        }
+
+        public IActionResult GetCareVisits(long contractId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", contractId);
+
+            var contract = _connection.Query<CareVisitVM>("CareVisitsbyContract", parameters, commandType: CommandType.StoredProcedure);
+
+            if (contract == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(contract);
+        }
+
+
+        [HttpGet]
+        public IActionResult ViewVisit(long visitId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", visitId);
+
+            var contract = _connection.QueryFirstOrDefault<CareVisitVM>("ViewCareVisit", parameters, commandType: CommandType.StoredProcedure);
+
+            if (contract == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(contract);
+        }
 
 
 

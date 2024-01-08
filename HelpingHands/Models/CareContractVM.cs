@@ -10,7 +10,7 @@ namespace HelpingHands.Models
             suburbs = new List<SuburbVM>();
         }
 
-
+        public long NurseId { get; set; }
         public long ContractId { get; set; }
         public string ContractNo { get; set; }
         public DateTime ContractDate { get; set; }
