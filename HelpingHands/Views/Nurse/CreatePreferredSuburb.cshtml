@@ -33,7 +33,10 @@
                                     <div class="col-lg-5">
                                         <h4>Available Suburbs</h4>
                                         <select  asp-items="@ViewBag.SuburbList" id="availableConditions" name="conditionId" class="form-select" multiple aria-label="multiple select example">
-                                           
+                                    @foreach (var suburb in ViewBag.SuburbList as List<SelectListItem>)
+                                    {
+                                        <option value="@suburb.Value">@suburb.Text</option>
+                                    }
                                         </select>
                                     </div>
                                     <div class="col-lg-2">
@@ -44,7 +47,7 @@
                                     </div>
                                     <div class="col-lg-5">
                                         <h4>Selected Suburb</h4>
-                                        <select class="form-select" multiple aria-label="multiple select example" id="selectedConditions" name="conditionId">
+                                        <select class="form-select" multiple aria-label="multiple select example" id="selectedConditions" name="suburbbId">
                                         </select>
                                     </div>
                                     <div class="text-right">

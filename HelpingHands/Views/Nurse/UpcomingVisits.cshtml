@@ -1,22 +1,6 @@
-﻿@model IEnumerable< HelpingHands.Models.CareContractVM>
+﻿@model IEnumerable< HelpingHands.Models.CareVisitVM>
 
-@{
-    Layout = "_PatientCareContractLayout";
-}
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success" role="alert">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger" role="alert">
-        @TempData["ErrorMessage"]
-    </div>
-}
 
 <section class="section profile">
     <div class="row">
@@ -29,36 +13,44 @@
                     <div class="tab-content pt-3">
 
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                            <h5 class="card-title">New Care Contracts</h5>
+                            <h5 class="card-title">Upcomming Visits</h5>
                             @if (Model != null && Model.Any())
                             {
                                 <table class="table" id="tblCity">
                                     <thead>
                                         <tr>
-                                            <th>First Name</th>
-                                            <th>Surname</th>
-                                            <th>Contract No</th>
-                                            <th>Contract Date</th>
-                                            <th>Suburb</th>
-                                            <th>Assign</th>
-
+                                            <th>Patient Name and Surname</th>
+                                            <th>Address</th>
+                                            <th>Contact Number</th>
+                                            <th>Visit Date</th>
+                                            <th>Action</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var contract in Model)
                                         {
                                             <tr>
-                                                <td>@contract.FirstName</td>
-                                                <td>@contract.Surname</td>
-                                                <td>@contract.ContractNo</td>
-                                                <td>@contract.ContractDate.ToString("dd-MM-yyyy")</td>
-                                                <td>@contract.Suburb</td>
                                                 <td>
-                                                    <a asp-action="AssignContract" asp-controller="Nurse" asp-route-contractId="@contract.ContractId" class="btn btn-primary">View Contract</a>
+                                                    @contract.FirstName
+                                                    @contract.Surname
+                                                </td>
+                                                <td>
+                                                    @contract.AddressLine1
+                                                    @contract.AddressLine2
+                                                    @contract.Suburb
+                                                </td>
+                                                <td>
+                                                    @contract.PhoneNumber
+                                                </td>
+                                                <td>
+                                                    @contract.VisitDate
+                                                </td>
 
+                                                <td>
+                                                    <a asp-action="updateCareVisit" asp-controller="Nurse" asp-route-id=""><i class='bx bx-info-circle' style='color:#12839f'></i></a> |
 
                                                 </td>
                                             </tr>
-
                                         }
 
                                     </tbody>
@@ -66,7 +58,7 @@
                             }
                             else
                             {
-                                <h2>No new care contracts found..</h2>
+                                <h2>No care contracts found..</h2>
                             }
 
 
@@ -80,6 +72,7 @@
         </div>
     </div>
 </section>
+
 
 <style>
     .profile .profile-card img {

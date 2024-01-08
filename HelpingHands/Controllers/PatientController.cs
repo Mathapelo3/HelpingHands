@@ -78,20 +78,24 @@ namespace HelpingHands.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
 
-            List<PatientConditionVM> patientConditions = RetrievePatientConditionsFromDatabase(user.Id);
+            List<PatientConditionVM> patientConditions = await RetrievePatientConditionsFromDatabase(user.Id);
 
-           
             return View(patientConditions);
         }
 
-        private List<PatientConditionVM> RetrievePatientConditionsFromDatabase(string userId)
+        private async Task<List<PatientConditionVM>> RetrievePatientConditionsFromDatabase(string userId)
         {
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id", userId, DbType.String, ParameterDirection.Input);
 
-                List<PatientConditionVM> patientConditions = _connection.Query<PatientConditionVM>("GetConditionByPatientId", parameters, commandType: CommandType.StoredProcedure).AsList();
+            var patientConditions = await _connection.QueryAsync<PatientConditionVM>(
+            "GetConditionByPatientId",
+            parameters,
+            commandType: CommandType.StoredProcedure
+        );
 
-                return patientConditions;
+       
+            return patientConditions.AsList();
         }
 
         [HttpGet]
