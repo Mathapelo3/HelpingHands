@@ -37,7 +37,7 @@
                                             <th>Surname</th>
                                             <th>First Name</th>
                                             <th>Nurse Code</th>
-                                            <th></th>
+                                            <th> Assigned Contracts</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,7 +47,11 @@
                                                 <td>@contract.FirstName</td>
                                                 <td>@contract.Surname</td>
                                                 <td>@contract.NurseCode</td>
-                                                <td><a asp-action="AssignContract" asp-controller="OfficeManager" asp-route-contractId="@contract.NurseId"><i class='bx bx-info-circle' style='color:#16697a'></i></a></td>
+                                                <td>
+                                                    <a asp-action="NurseContracts" asp-controller="OfficeManager" asp-route-nurseId="@contract.NurseId">
+                                                        <i class='bx bx-info-circle' style='color:#16697a'></i>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         }
                                     </tbody>
@@ -55,6 +59,22 @@
                             }
                             else
                             {
+                                <form asp-action="GetSuburbs" method="get">
+                                    <div class="row mb-3">
+                                        <label for="selectedSuburb" class="col-md-2 col-form-label">Suburb</label>
+                                        <div class="col-md-3">
+                                            <select name="selectedSuburb" asp-items="ViewBag.SuburbList" class="form-select" aria-label="Default select example"></select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="submit" value="Filter" class="btn btn-primary" style="color:#fff; background-color:#16697a;">
+                                        </div>
+                                        <!-- Other form elements -->
+                                    </div>
+                                </form>
+                                <hr/>
+                                <br/>
+                                
+
                                 <h2>No nurses found based on the selected suburb.</h2>
                             }
                         </div>

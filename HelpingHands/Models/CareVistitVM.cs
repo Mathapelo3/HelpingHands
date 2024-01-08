@@ -39,6 +39,8 @@ namespace HelpingHands.Models
         public string WoundCondition { get; set; }
         public string Notes { get; set; }
         public long NurseId { get; set; }
+        public string nFirstName { get; set; }
+        public string nSurname { get;set; } 
    
 
     }
