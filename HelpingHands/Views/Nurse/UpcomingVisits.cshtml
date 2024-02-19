@@ -43,11 +43,14 @@
                                                     @contract.PhoneNumber
                                                 </td>
                                                 <td>
-                                                    @contract.VisitDate
+                                                    @contract.VisitDate.ToString("yyyy-MM-dd")
+                                                </td>
+                                                <td>
+                                                    @contract.ApproxArriveDate.ToString("hh\\:mm")
                                                 </td>
 
                                                 <td>
-                                                    <a asp-action="updateCareVisit" asp-controller="Nurse" asp-route-id=""><i class='bx bx-info-circle' style='color:#12839f'></i></a> |
+                                                    <a asp-action="updateCareVisit" asp-controller="Nurse" asp-route-id=""><i class='bx bx-info-circle' style='color:#12839f'></i></a> 
 
                                                 </td>
                                             </tr>

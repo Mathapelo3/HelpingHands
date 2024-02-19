@@ -30,8 +30,15 @@ namespace HelpingHands.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var user = await _userManager.GetUserAsync(User);
+
+            List<CareVisitVM> viewCareVisit = RetrieveUpcommingCareVisitsFromDatabase(user.Id);
+
+           
+
+            
             var newContractCount = _connection.QueryFirstOrDefault<int>("CountNewContracts", commandType: CommandType.StoredProcedure);
             var assignedContractCount = _connection.QueryFirstOrDefault<int>("CountAssignedContracts", commandType: CommandType.StoredProcedure);
             var closedContractCount = _connection.QueryFirstOrDefault<int>("CountClosedContracts", commandType: CommandType.StoredProcedure);
@@ -39,10 +46,19 @@ namespace HelpingHands.Controllers
             ViewBag.NewContractCount = newContractCount;
             ViewBag.AssignedContractCount = assignedContractCount;
             ViewBag.ClosedContractCount = closedContractCount;
-
+            
             return View();
            
         }
+
+        private List<CareVisitVM> RetrieveUpcommingCareVisitsFromDatabase(string userId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", userId, DbType.String, ParameterDirection.Input);
+
+            return _connection.Query<CareVisitVM>("UpcommingVisits", parameters, commandType: CommandType.StoredProcedure).ToList();
+        }
+
 
         //Profile
         public async Task<IActionResult> NurseProfile()
@@ -95,9 +111,34 @@ namespace HelpingHands.Controllers
 
             return _connection.Query<CareContractVM>("GetMyAssignedContracts", parameters, commandType: CommandType.StoredProcedure);
         }
+        //new contract
+
+        public async Task<IActionResult> GetNewContract()
+        {
+            var contracts = await _connection.QueryAsync<CareContractVM>("GetNewContracts", commandType: CommandType.StoredProcedure);
+            return View(contracts);
+        }
+
 
         [HttpGet]
         public IActionResult GetContract(long contractId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@ContractId", contractId);
+
+            var contract = _connection.QueryFirstOrDefault<CareVisitVM>("ViewAssignedContractBySuburb", parameters, commandType: CommandType.StoredProcedure);
+
+            if (contract == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(contract);
+        }
+
+        [HttpGet]
+        public IActionResult _GetContract(long contractId)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@ContractId", contractId);
@@ -123,11 +164,21 @@ namespace HelpingHands.Controllers
             return _connection.Query<CareContractVM>("NewCareContractByNurseId", parameters, commandType: CommandType.StoredProcedure);
         }
 
-        public async Task<IActionResult> GetNewContract()
+       
+
+        private IEnumerable<CareContractVM> RetrieveClosedCareContractsFromDatabase(string userId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", userId, DbType.String, ParameterDirection.Input);
+
+            return _connection.Query<CareContractVM>("ClosedCareContractByNurseId", parameters, commandType: CommandType.StoredProcedure);
+        }
+
+        public async Task<IActionResult> GetClosedContract()
         {
             var user = await _userManager.GetUserAsync(User);
 
-            IEnumerable<CareContractVM> newCareContracts = RetrieveNewCareContractsFromDatabase(user.Id);
+            IEnumerable<CareContractVM> newCareContracts = RetrieveClosedCareContractsFromDatabase(user.Id);
 
             return View(newCareContracts);
         }
@@ -182,7 +233,7 @@ namespace HelpingHands.Controllers
                 TempData["ErrorMessage"] = "Care contract Not Assigned";
             }
 
-            return RedirectToAction("GetNewContract");
+            return RedirectToAction("AssignContract");
         }
 
         //CareVisit
@@ -219,12 +270,23 @@ namespace HelpingHands.Controllers
             return View(viewCareVisit);
         }
 
+        public async Task<IActionResult> _CareVisitCalender()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            IEnumerable<CareVisitVM> viewCareVisit = RetrieveCareVisitsFromDatabase(user.Id);
+
+            return View(viewCareVisit);
+        }
+
+        
+
         private IEnumerable<CareVisitVM> RetrieveCareVisitsFromDatabase(string userId)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@Id", userId, DbType.String, ParameterDirection.Input);
 
-            return _connection.Query<CareVisitVM>("GetMyAssignedContracts", parameters, commandType: CommandType.StoredProcedure);
+            return _connection.Query<CareVisitVM>("NurseCareVisitById", parameters, commandType: CommandType.StoredProcedure);
         }
 
         public async Task<IActionResult> UpcomingVisits()
@@ -300,14 +362,14 @@ namespace HelpingHands.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPreferredSuburb(PreferredSuburbVM suburb)
+        public async Task<IActionResult> AddPreferredSuburb(PreferredSuburbVM suburbs)
         {
             var user = await _userManager.GetUserAsync(User);
           
 
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@Id", user.Id, DbType.String);
-            parameters.Add("@SuburbId", suburb.SuburbId, DbType.Int64);
+            parameters.Add("@Suburb", suburbs.SuburbId, DbType.String);
 
             var affectedRows = await _connection.ExecuteAsync(
                 "InsertNursePreferredSub",
@@ -327,7 +389,120 @@ namespace HelpingHands.Controllers
             return RedirectToAction("CreatePreferredSuburb");
         }
 
-       
+        public IActionResult ViewNurseVisits(long nurseId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", nurseId);
+
+            var contract = _connection.Query<CareVisitVM>("NurseCareVisit", parameters, commandType: CommandType.StoredProcedure);
+
+            if (contract == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(contract);
+        }
+
+        public async Task<IActionResult> VisitPatient(long patientId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", patientId);
+
+            var contract = _connection.QueryFirstOrDefault<CareVisitVM>("ViewAssignedContractBySuburb", parameters, commandType: CommandType.StoredProcedure);
+
+            if (contract == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(contract);
+        }
+        //List of patient
+        public async Task<IActionResult> GetPatient(long patientId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", patientId);
+
+            var contract = _connection.QueryFirstOrDefault<CareVisitVM>("ViewAssignedContractBySuburb", parameters, commandType: CommandType.StoredProcedure);
+
+            if (contract == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(contract);
+        }
+
+        //Report
+
+        private List<PatientProfileVM> GetPatientList(string userId)
+        {
+           
+
+            List<PatientProfileVM> patientConditions = _connection.Query<PatientProfileVM>("GetAllPatients", commandType: CommandType.StoredProcedure).ToList();
+
+            return patientConditions;
+        }
+
+        public async Task<IActionResult> Patient(string patientId)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            List<PatientProfileVM> nurse = new List<PatientProfileVM>();
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@Name", patientId); // Assuming userId is the correct parameter
+
+            var patient = _connection.Query<PatientConditionVM>("PatientCondition", parameters, commandType: CommandType.StoredProcedure);
+
+            var patients = await Task.Run(() => GetPatientList(patientId));
+
+            var selectLists = patients.Select(update => new SelectListItem
+            {
+                Value = update.PatientId.ToString(),
+                Text = update.FirstName + " " + update.Surname
+            }).ToList();
+
+            ViewBag.PatientList = selectLists;
+
+            return View(patient);
+        }
+
+        private List<PatientProfileVM> GetPatientList()
+        {
+            var nurses = _connection.Query<PatientProfileVM>("GetAllPatients", commandType: CommandType.StoredProcedure).ToList();
+
+            return nurses;
+        }
+
+        public IActionResult PatientContract(string name)
+        {
+            List<CareContractVM> nurse = new List<CareContractVM>();
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@Name", name);
+
+            var suburbs = _connection.Query<CareContractVM>("GetMyPatients", parameters, commandType: CommandType.StoredProcedure);
+
+            var patients = GetPatientList();
+
+            var selectLists = patients.Select(update => new SelectListItem
+            {
+                Value = update.PatientId.ToString(),
+                Text = update.FirstName + " " + update.Surname
+            }).ToList();
+
+            ViewBag.PatientList = selectLists;
+
+            return View(suburbs);
+        }
+
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 ﻿@using HelpingHands.Models
-@model List<CareContractVM> 
+@model List<CareContractVM>
 
 @{
     Layout = "_ContractLayout";
@@ -48,21 +48,21 @@
                                             <th>Contract Date</th>
                                             <th>Suburb</th>
                                             <th>Assign</th>
-                                            
+
                                     </thead>
                                     <tbody>
-                                       @foreach (var contract in Model)
-                                       {   
-                                                <tr >
-                                                    <td>@contract.FirstName</td>
-                                                    <td>@contract.Surname</td>
-                                                    <td>@contract.ContractNo</td>
-                                                    <td>@contract.ContractDate.ToString("dd-MM-yyyy")</td>
-                                                    <td>@contract.Suburb</td>
-                                                    <td> <a asp-action="AssignContract" asp-controller="OfficeManager" asp-route-contractId="@contract.ContractId" ><i class='bx bx-info-circle' style='color:#16697a'></i></a></td>
-                                                </tr>
-                                            
-                                            
+                                        @foreach (var contract in Model)
+                                        {
+                                            <tr>
+                                                <td>@contract.FirstName</td>
+                                                <td>@contract.Surname</td>
+                                                <td>@contract.ContractNo</td>
+                                                <td>@contract.ContractDate.ToString("dd-MM-yyyy")</td>
+                                                <td>@contract.Suburb</td>
+                                                <td> <a asp-action="AssignContract" asp-controller="OfficeManager" asp-route-contractId="@contract.ContractId"><i class='bx bx-info-circle' style='color:#16697a'></i></a></td>
+                                            </tr>
+
+
                                         }
 
                                     </tbody>
