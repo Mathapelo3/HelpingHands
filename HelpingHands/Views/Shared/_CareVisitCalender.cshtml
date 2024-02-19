@@ -1,0 +1,40 @@
+﻿@using HelpingHands.Models
+@model List<CareVisitVM>
+
+
+<section>
+    <div class="col-lg-4">
+        <div class="padding">
+
+            <div class="card user-activity-card">
+                <div class="card-header">
+                    <h5>List of Nurses</h5>
+                </div>
+                <div class="card-block">
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var visit in Model)
+                        {
+                            <div class="row m-b-25">
+
+                                <div class="col-auto p-r-0">
+                                    <div class="u-img"> <img src=" https://i.imgur.com/UIhwGhr.jpg" alt="user image" class="img-radius cover-img"> <img src="https://img.icons8.com/ultraviolet/40/000000/active-state.png" alt="user image" class="img-radius profile-img"> </div>
+                                </div>
+                                <div class="col">
+                                    <a asp-action="ViewNurse" asp-controller="OfficeManager" asp-route-nurseId="@visit.NurseId">
+                                        <h6 class="m-b-5" style="color:black">Patient: @visit.FirstName @visit.Surname</h6>
+                                        <p class="text-muted m-b-0">@visit.VisitDate</p>
+                                        <p class="text-muted m-b-0"><i class="mdi mdi-timer feather icon-clock m-r-10"></i>@visit.Suburb</p>
+                                    </a>
+                                </div>
+
+
+                            </div>
+                        }
+                    }
+
+
+                </div>
+            </div>
+        </div>
+</section>

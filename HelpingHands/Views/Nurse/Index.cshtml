@@ -1,4 +1,7 @@
-﻿@{
+﻿@using HelpingHands.Models
+@model List<CareVisitVM>
+
+@{
     Layout = "_Layout";
 }
 
@@ -17,21 +20,21 @@
                                 <img src="~/image/bell.png" />
                             </div>
                             <h5 class="font-size-20 mt-0 pt-1">@ViewBag.NewContractCount</h5>
-                            <h6 class="text-muted mb-0">New Contracts</h6>
+                            <h6 class="text-muted mb-0">Manage Contracts</h6>
                         </div>
                     </div>  
                      
                 </a>
             </div>
             <div class="col-xl-3 col-md-6">
-                <a asp-action="GetAssignedContract" asp-controller="Nurse">
+                <a asp-action="PatientContract" asp-controller="Nurse">
                     <div class="card bg-pattern">
                         <div class="card-body btn btn-button">
                             <div class="float-right">
                                 <img src="~/image/contract.png" />
                             </div>
-                            <h5 class="font-size-20 mt-0 pt-1">@ViewBag.AssignedContractCount</h5>
-                            <h6 class="text-muted mb-0">Assigned Contracts</h6>
+                            
+                            <h6 class="text-muted mb-0">Manage Patients </h6>
                         </div>
                     </div>
                 </a>
@@ -113,54 +116,43 @@
 
                     <div class="card user-activity-card">
                         <div class="card-header">
-                            <h5>Upcoming Care Visits</h5>
+                            <h5>Upcomming Care Visits</h5>
                         </div>
                         <div class="card-block">
-                            <div class="row m-b-25">
-                                <div class="col-auto p-r-0">
-                                    <div class="u-img"> <img src=" https://i.imgur.com/UIhwGhr.jpg" alt="user image" class="img-radius cover-img"> <img src="https://img.icons8.com/ultraviolet/40/000000/active-state.png" alt="user image" class="img-radius profile-img"> </div>
-                                </div>
-                                <div class="col">
-                                    <h6 class="m-b-5">Timothy Husai</h6>
-                                    <p class="text-muted m-b-0">For what reason would it be advisable.</p>
-                                    <p class="text-muted m-b-0"><i class="mdi mdi-timer feather icon-clock m-r-10"></i>24 min ago</p>
-                                </div>
-                            </div>
-                            <div class="row m-b-25">
-                                <div class="col-auto p-r-0">
-                                    <div class="u-img"> <img src="https://i.imgur.com/rAInTHU.jpg" alt="user image" class="img-radius cover-img"> <img src="https://img.icons8.com/office/16/000000/active-state.png" alt="user image" class="img-radius profile-img"> </div>
-                                </div>
-                                <div class="col">
-                                    <h6 class="m-b-5">Simkil Ahleu</h6>
-                                    <p class="text-muted m-b-0">That might be little bit risky to have crew</p>
-                                    <p class="text-muted m-b-0"><i class="mdi mdi-timer feather icon-clock m-r-10"></i>12 hours ago</p>
-                                </div>
-                            </div>
-                            <div class="row m-b-25">
-                                <div class="col-auto p-r-0">
-                                    <div class="u-img"> <img src="https://i.imgur.com/rAInTHU.jpg" alt="user image" class="img-radius cover-img"> <img src="https://img.icons8.com/office/16/000000/active-state.png" alt="user image" class="img-radius profile-img"> </div>
-                                </div>
-                                <div class="col">
-                                    <h6 class="m-b-5">John Deo</h6>
-                                    <p class="text-muted m-b-0">For what reason would it be advisable</p>
-                                    <p class="text-muted m-b-0"><i class="mdi mdi-timer feather icon-clock m-r-10"></i>2 min ago</p>
-                                </div>
-                            </div>
-                            <div class="row m-b-25">
-                                <div class="col-auto p-r-0">
-                                    <div class="u-img"> <img src=" https://i.imgur.com/UIhwGhr.jpg" alt="user image" class="img-radius cover-img"> <img src="https://img.icons8.com/ultraviolet/40/000000/active-state.png" alt="user image" class="img-radius profile-img"> </div>
-                                </div>
-                                <div class="col">
-                                    <h6 class="m-b-5">John Deo</h6>
-                                    <p class="text-muted m-b-0">member like them. For what reason.</p>
-                                    <p class="text-muted m-b-0"><i class="mdi mdi-timer feather icon-clock m-r-10"></i>12 min ago</p>
-                                </div>
-                            </div>
-                            <div class="text-center"> <a href="#!" class="b-b-primary text-primary" data-abc="true">View all Projects</a> </div>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var nurse in Model)
+                                {
+                                    <div class="row m-b-25">
+
+                                        <div class="col-auto p-r-0">
+                                            <div class="u-img"> <img src=" https://i.imgur.com/UIhwGhr.jpg" alt="user image" class="img-radius cover-img"> <img src="https://img.icons8.com/ultraviolet/40/000000/active-state.png" alt="user image" class="img-radius profile-img"> </div>
+                                        </div>
+                                        <div class="col">
+                                            <a asp-action="ViewNurse" asp-controller="OfficeManager" asp-route-nurseId="@nurse.CareVisitId">
+                                                <h6 class="m-b-5" style="color:black">@nurse.FirstName @nurse.Surname</h6>
+                                                <p class="text-muted m-b-0">@nurse.PhoneNumber</p>
+                                                <p class="text-muted m-b-0"><i class="mdi mdi-timer feather icon-clock m-r-10"></i>@nurse.VisitDate.ToString("yyyy-MM-dd")</p>
+                                                <p class="text-muted m-b-0"><i class="mdi mdi-timer feather icon-clock m-r-10"></i>@nurse.ApproxArriveDate.ToString("hh\\:mm")</p>
+                                            </a>
+                                        </div>
+
+
+                                    </div>
+                                }
+                            }
+                            else{
+                                <p>
+                                    You have no upcoming visits
+                                </p>
+                            }
+
+
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </section>
 

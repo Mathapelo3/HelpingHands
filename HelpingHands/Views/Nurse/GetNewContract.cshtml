@@ -1,21 +1,8 @@
-﻿@model IEnumerable< HelpingHands.Models.CareContractVM>
+﻿@using HelpingHands.Models
+@model List<CareContractVM>
 
 @{
-    Layout = "_PatientCareContractLayout";
-}
-
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success" role="alert">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger" role="alert">
-        @TempData["ErrorMessage"]
-    </div>
+    Layout = "_NurseContractLayout";
 }
 
 <section class="section profile">
@@ -32,6 +19,26 @@
                             <h5 class="card-title">New Care Contracts</h5>
                             @if (Model != null && Model.Any())
                             {
+                                <hr />
+                                <br />
+
+                                <form asp-action="NewContracts" method="get">
+                                    <div class="row mb-3">
+                                        <label for="startDate" class="col-md-2 col-form-label">Start Date:</label>
+                                        <div class="col-md-3">
+                                            <input type="date" class="form-control" id="startDate" name="startDate">
+                                        </div>
+                                        <label for="endDate" class="col-md-2 col-form-label">End Date:</label>
+                                        <div class="col-md-3">
+                                            <input type="date" class="form-control" id="endDate" name="endDate">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <input type="submit" value="Filter" class="btn btn-primary" style="color:#fff; background-color:#16697a;">
+                                        </div>
+                                    </div>
+                                </form>
+                                <br />
                                 <table class="table" id="tblCity">
                                     <thead>
                                         <tr>
@@ -52,12 +59,9 @@
                                                 <td>@contract.ContractNo</td>
                                                 <td>@contract.ContractDate.ToString("dd-MM-yyyy")</td>
                                                 <td>@contract.Suburb</td>
-                                                <td>
-                                                    <a asp-action="AssignContract" asp-controller="Nurse" asp-route-contractId="@contract.ContractId" class="btn btn-primary">View Contract</a>
-
-
-                                                </td>
+                                                <td> <a asp-action="AssignContract" asp-controller="Nurse" asp-route-contractId="@contract.ContractId"><i class='bx bx-info-circle' style='color:#16697a'></i></a></td>
                                             </tr>
+
 
                                         }
 

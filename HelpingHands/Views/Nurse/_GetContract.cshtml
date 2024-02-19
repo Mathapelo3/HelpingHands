@@ -105,81 +105,13 @@
             </div>
 
         </div>
-       @* <div class="col-xl-4">
+        <div class="col-xl-4">
             @await Html.PartialAsync("_CareVisitCalender", @Model)
-        </div>*@
+        </div>
 
     </div>
-</section>
-
-<script>
-    $(function () {
-       
-
-        let successMessage = "@TempData["SuccessMessage"]";
-        let errorMessage = "@TempData["ErrorMessage"]";
-
-        if (successMessage !== "") {
-            // Display success message using Bootstrap alert
-            $('#alertDiv').html('<div class="alert alert-success">' + successMessage + '</div>');
-        } else if (errorMessage !== "") {
-            // Display error message using Bootstrap alert
-            $('#alertDiv').html('<div class="alert alert-danger">' + errorMessage + '</div>');
-        }
-    });
-</script>
-
-
-<style>
-    .profile .profile-card img {
-        max-width: 120px;
-    }
-
-    .profile .profile-card h2 {
-        font-size: 24px;
-        font-weight: 700;
-        color: #2c384e;
-        margin: 10px 0 0 0;
-    }
-
-    .profile .profile-card h3 {
-        font-size: 18px;
-    }
-
-    .profile .profile-card .social-links a {
-        font-size: 20px;
-        display: inline-block;
-        color: rgba(1, 41, 112, 0.5);
-        line-height: 0;
-        margin-right: 10px;
-        transition: 0.3s;
-    }
-
-        .profile .profile-card .social-links a:hover {
-            color: #16697a;
-        }
-
-    .profile .profile-overview .row {
-        margin-bottom: 20px;
-        font-size: 15px;
-    }
-
-    .profile .profile-overview .card-title {
-        color: #16697a;
-    }
-
-    .profile .profile-overview .label {
-        font-weight: 600;
-        color: rgba(1, 41, 112, 0.6);
-    }
-
-    .profile .profile-edit label {
-        font-weight: 600;
-        color: rgba(1, 41, 112, 0.6);
-    }
-
-    .profile .profile-edit img {
-        max-width: 120px;
-    }
-
-</style>
+</section>@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

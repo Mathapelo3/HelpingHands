@@ -19,10 +19,11 @@
                                 <table class="table" id="tblCity">
                                     <thead>
                                         <tr>
-                                            <th>Patient Name and Surname</th>
+                                            <th>Name and Surname</th>
                                             <th>Address</th>
-                                            <th>Contact Number</th>
+                                            
                                             <th>Visit Date</th>
+                                            <th>Approx. Arrival Time </th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -39,11 +40,12 @@
                                                     @contract.AddressLine2
                                                     @contract.Suburb
                                                 </td>
+                                                
                                                 <td>
-                                                    @contract.PhoneNumber
+                                                    @contract.VisitDate.ToString("yyyy-MM-dd")
                                                 </td>
                                                 <td>
-                                                    @contract.VisitDate
+                                                    @contract.ApproxArriveDate.ToString("hh\\:mm")
                                                 </td>
 
                                                 <td>

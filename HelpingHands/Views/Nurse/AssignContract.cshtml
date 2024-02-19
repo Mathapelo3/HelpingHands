@@ -48,10 +48,15 @@
                                 <div class="col-lg-9 col-md-8">@Model.WoundDescription</div>
                             </div>
 
-                            <form method="post" asp-action="UpdateContract" asp-controller="Nurse">
+                            <form method="post" asp-action="UpdateContract" asp-controller="OfficeManager">
                                 <input type="hidden" asp-for="ContractId" value="@Model.ContractId" />
 
-                              
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Select Nurse</div>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select asp-for="Nurse" asp-items="ViewBag.NurseList" class="form-select" aria-label="Default select example"></select>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Update</div>
                                     <div class="col-md-8 col-lg-9">
@@ -143,4 +148,6 @@
     }
 
 </style>
+
+
 

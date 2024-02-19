@@ -1,26 +1,11 @@
 ﻿@using HelpingHands.Models
-@model CareVisitVM
-
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success" role="alert">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger" role="alert">
-        @TempData["ErrorMessage"]
-    </div>
-}
-
+@model CareContractVM
 
 <section class="section profile">
     <div class="row">
 
 
-        <div class="col-xl-8">
+        <div class="col-xl-9">
 
             <div class="card">
                 <div class="card-body pt-3">
@@ -64,38 +49,26 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 label">Nurse Assigned</div>
-                                <div class="col-lg-9 col-md-8">@Model.Nurse</div>
+                                <div class="col-lg-3 col-md-4 label">Assigned Nurse Code</div>
+                                <div class="col-lg-9 col-md-8">@Model.NurseCode</div>
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 label">Contract Status</div>
+                                <div class="col-lg-3 col-md-4 label">Contract Status </div>
                                 <div class="col-lg-9 col-md-8">@Model.Status</div>
                             </div>
-                            <hr />
-                            <form method="post" asp-action="CreateCareVisit" asp-controller="Nurse">
 
-                                <h3>Schedule Care Visit</h3>
-                                <input type="hidden" asp-for="ContractId" value="@Model.ContractId" />
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Start date</div>
+                                <div class="col-lg-9 col-md-8">@Model.StartDate.ToString("dd-MM-yyyy")</div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Visit Date</div>
-                                    <div class="col-lg-9 col-md-8">
-                                        <input asp-for="VisitDate" type="date" id="currentDate" class="form-control" asp-format="{0:yyyy-MM-dd}" />
-                                    </div>
-                                </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">End Date</div>
+                                <div class="col-lg-9 col-md-8">@Model.EndDate.ToString("dd-MM-yyyy")</div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Approximate Arrival Time</div>
-                                    <div class="col-lg-9 col-md-8">
-                                        <input asp-for="ApproxArriveDate" type="time" id="currentTime" class="form-control" />
-                                    </div>
-                                </div>
 
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary" style="color:#fff; background-color:#16697a;">Save Changes</button>
-                                </div>
-                            </form>
 
                         </div>
 
@@ -105,29 +78,8 @@
             </div>
 
         </div>
-       @* <div class="col-xl-4">
-            @await Html.PartialAsync("_CareVisitCalender", @Model)
-        </div>*@
-
     </div>
 </section>
-
-<script>
-    $(function () {
-       
-
-        let successMessage = "@TempData["SuccessMessage"]";
-        let errorMessage = "@TempData["ErrorMessage"]";
-
-        if (successMessage !== "") {
-            // Display success message using Bootstrap alert
-            $('#alertDiv').html('<div class="alert alert-success">' + successMessage + '</div>');
-        } else if (errorMessage !== "") {
-            // Display error message using Bootstrap alert
-            $('#alertDiv').html('<div class="alert alert-danger">' + errorMessage + '</div>');
-        }
-    });
-</script>
 
 
 <style>

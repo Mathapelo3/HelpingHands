@@ -4,65 +4,61 @@
     Layout = "_PatientCareContractLayout";
 }
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
 <section class="section profile">
     <div class="row">
 
         <div class="col-lg-12">
 
             <div class="card">
-                <div class="card-body pt-4">
+                <div class="card-body pt-3">
 
-                 
+                    <div class="tab-content pt-3">
 
                         <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                            <h5 class="card-title">Assigned Contracts</h5>
+                            <h5 class="card-title">New Care Contracts</h5>
                             @if (Model != null && Model.Any())
                             {
                                 <table class="table" id="tblCity">
                                     <thead>
                                         <tr>
-                                            <th>Requested Date</th>
-                                            <th>Contract No.</th>
                                             <th>First Name</th>
                                             <th>Surname</th>
+                                            <th>Contract No</th>
+                                            <th>Contract Date</th>
                                             <th>Suburb</th>
-                                            <th>Start Date</th>
-                                            <th>Update</th>
+                                            <th>Assign</th>
 
-                                            <th>Action</th>
-                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var contract in Model)
                                         {
                                             <tr>
+                                                <td>@contract.FirstName</td>
+                                                <td>@contract.Surname</td>
+                                                <td>@contract.ContractNo</td>
+                                                <td>@contract.ContractDate.ToString("dd-MM-yyyy")</td>
+                                                <td>@contract.Suburb</td>
                                                 <td>
-                                                    @contract.ContractDate.ToString("yyyy/MM/dd")
-                                                </td>
-                                                <td>
-                                                    @contract.ContractNo
-                                                </td>
-                                                <td>
-                                                    @contract.FirstName
-                                                </td>
-                                                <td>
-                                                    @contract.Surname
-                                                </td>
-                                                <td>
-                                                    @contract.Suburb
-                                                </td>
-                                                <td>
-                                                    @contract.StartDate.ToString("yyyy/MM/dd")
-                                                </td>
-                                                <td>
-                                                    <a asp-action="AssignContract" asp-controller="Nurse" asp-route-contractId="@contract.ContractId" class="btn btn-primary">Update</a>
-                                                </td>
+                                                    <a asp-action="ViewContract" asp-controller="Nurse" asp-route-contractId="@contract.ContractId" class="btn btn-primary">View Contract</a>
 
-                                                <td>
-                                                    <a asp-action="GetContract" asp-controller="Nurse" asp-route-contractId="@contract.ContractId" class="btn btn-primary">Create Visit</a>
 
                                                 </td>
                                             </tr>
+
                                         }
 
                                     </tbody>
@@ -70,7 +66,7 @@
                             }
                             else
                             {
-                                <h2>No care contracts found..</h2>
+                                <h2>No closed care contracts found..</h2>
                             }
 
 
@@ -84,7 +80,6 @@
         </div>
     </div>
 </section>
-
 
 <style>
     .profile .profile-card img {
@@ -139,3 +134,8 @@
     }
 
 </style>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

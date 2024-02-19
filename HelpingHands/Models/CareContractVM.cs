@@ -22,6 +22,10 @@ namespace HelpingHands.Models
         public string? AddressLine2 { get; set; }
         public long SuburbId { get; set; }
 
+        public int ConditionId { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+
 
         [Required(ErrorMessage = "Please enter wound description")]
         public string? WoundDescription { get; set; }
@@ -31,6 +35,7 @@ namespace HelpingHands.Models
         public string PostalCode { get; set; }
         public long StatusId { get; set; }
         public bool IsDeleted { get; set; }
+        public string NurseCode { get; set; }
 
         public string Suburb { get; set; }
 
